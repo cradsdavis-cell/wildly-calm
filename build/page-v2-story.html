@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wildly Calm</title>
+<meta name="description" content="Small outdoor retreats for men in their 20s and 30s who have plenty of mates but not many they can really talk to. Next: canoeing the Barrington River, 4 to 6 December.">
+<meta property="og:title" content="Wildly Calm">
+<meta property="og:description" content="Plenty of mates. Not many you'd ring at 11pm. Small outdoor men's retreats. Next: Barrington River, 4 to 6 December.">
+<meta property="og:image" content="img/hero-beach-croajingalong.jpg">
+<link rel="icon" href="img/wc-symbol-05.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Gaegu:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: problem -> solution -> how -> proof -> book. The first screen answers what, who,
+   why and when; a floating register-interest card follows the reader down the page.
+   Brand from Rosie's guide + Instagram: sand ground, olive panels, amber on photos,
+   film photography, white torn-edge prints, Montserrat tracked caps, Gaegu hand lines. */
+:root{
+  --sand:#D7D2C6;
+  --sand-deep:#CCC6B8;
+  --paper:#FBFAF6;
+  --ink:#1F1E1B;
+  --olive:#5E604A;
+  --olive-text:#55573F;
+  --amber:#F7AD19;
+  --cream:#F1EEE6;
+  --rust:#A65E39;
+  --sans:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Gaegu","Bradley Hand","Comic Sans MS",cursive;
+  --type:"Courier Prime","Courier New",ui-monospace,monospace;
+  --measure:60ch;
+  --gutter:clamp(16px,4vw,40px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:var(--sans);text-wrap:balance}
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:clamp(56px,8vw,96px)}
+h2{font-weight:600;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.18;letter-spacing:.06em;text-transform:uppercase}
+.eyebrow{font-family:var(--hand);font-size:1.45rem;line-height:1;color:var(--rust);margin-bottom:10px}
+.label{font-weight:600;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--olive-text)}
+
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.12;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- hero: the whole offer on one screen ---------- */
+.hero{position:relative;color:var(--cream);isolation:isolate;background:var(--ink);min-height:clamp(620px,92vh,880px);display:grid;align-items:end}
+.hero > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 80%;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,16,12,.55) 0%,rgba(16,16,12,.2) 35%,rgba(16,16,12,.55) 62%,rgba(16,16,12,.86) 100%)}
+.top{position:absolute;inset:0 0 auto 0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.brand{display:block;text-decoration:none}
+.brand img{width:clamp(110px,12vw,140px)}
+.top nav{display:flex;gap:clamp(14px,2.6vw,28px);flex-wrap:wrap;font-weight:600;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+.top nav a{text-decoration:none;color:var(--cream);padding-block:4px;border-bottom:1px solid transparent}
+.top nav a:hover{border-color:var(--amber)}
+.hero > .wrap{width:100%;padding-block:130px clamp(28px,4vw,44px);display:grid;gap:18px}
+.hero h1{font-weight:600;font-size:clamp(2rem,5vw,3.6rem);line-height:1.08;letter-spacing:.04em;text-transform:uppercase;max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero .sub{max-width:52ch;font-size:clamp(1.02rem,1.5vw,1.18rem);opacity:.95}
+.tag{font-family:var(--hand);color:var(--amber);font-size:1.35rem}
+
+/* facts bar: the summary a visitor scans first */
+.facts{margin-top:10px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;background:rgba(241,238,230,.96);color:var(--ink);align-items:stretch}
+.fact{padding:14px 18px;display:grid;gap:2px;border-right:1px solid rgba(31,30,27,.14);min-width:0}
+.fact .k{font-weight:600;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--olive-text)}
+.fact .v{font-weight:600;font-size:.98rem;line-height:1.3}
+.facts .cta{display:grid;align-content:center;padding:12px 14px}
+.btn{appearance:none;border:0;cursor:pointer;display:inline-block;text-decoration:none;font:600 .74rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;padding:14px 18px;background:var(--amber);color:var(--ink)}
+.btn:hover{background:var(--ink);color:var(--amber)}
+
+/* ---------- problem ---------- */
+.problem .grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,64px);align-items:center}
+.pains{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:18px}
+.pains li{display:grid;gap:4px;padding-left:18px;border-left:3px solid var(--olive)}
+.pains q{font-family:var(--hand);font-size:1.5rem;line-height:1.1;quotes:"\201C" "\201D";color:var(--ink)}
+.pains p{color:var(--olive-text);max-width:48ch}
+.answer{margin-top:28px;font-weight:600;font-size:1.15rem;max-width:44ch}
+.answer span{background:linear-gradient(transparent 60%,rgba(247,173,25,.45) 60%)}
+
+/* prints: white torn-edge photos with typewriter captions */
+.print{filter:drop-shadow(0 12px 16px rgba(0,0,0,.35));margin:0;min-width:0}
+.print figure{background:var(--paper);padding:8px;margin:0}
+.print img{width:100%;aspect-ratio:var(--ar,3/2);object-fit:cover}
+.print figcaption{font-family:var(--type);font-size:.78rem;line-height:1.25;padding:8px 2px 2px}
+/*TORN*/
+
+/* ---------- how it works: each step has its picture ---------- */
+.how{background:var(--olive);color:var(--cream)}
+.how .eyebrow{color:var(--amber)}
+.steps{list-style:none;margin:clamp(28px,4vw,44px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+.step{display:grid;gap:10px;align-content:start;min-width:0}
+.step .print figure{padding:6px}
+.step .n{font-family:var(--hand);color:var(--amber);font-size:1.3rem;line-height:1;margin-top:6px}
+.step b{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.95rem}
+.step p{font-size:.95rem;opacity:.9}
+
+/* ---------- proof ---------- */
+.proof .grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,64px);align-items:start}
+.card{background:var(--paper);padding:clamp(24px,3vw,36px);display:grid;gap:16px}
+.card-wrap{filter:drop-shadow(0 16px 24px rgba(0,0,0,.25));margin-top:24px}
+.card blockquote{margin:0;font-family:var(--type);font-size:clamp(1rem,1.7vw,1.18rem);line-height:1.55}
+.card cite{font-style:normal;font-family:var(--hand);font-size:1.25rem;color:var(--rust)}
+.trips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,22px)}
+.trip{display:grid;gap:8px;align-content:start;min-width:0}
+.trip .print figure{padding:6px}
+.trip h3{font-weight:600;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase}
+.trip p{font-size:.88rem;color:var(--olive-text)}
+
+/* ---------- principles + people ---------- */
+.principles{background:var(--sand-deep)}
+.plist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,36px);margin-top:clamp(24px,3vw,36px)}
+.plist div{border-top:2px solid var(--ink);padding-top:14px;display:grid;gap:6px;align-content:start}
+.plist b{font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.plist p{font-size:.98rem}
+.people{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.people h3{font-weight:600;font-size:clamp(1.15rem,2vw,1.45rem);letter-spacing:.06em;text-transform:uppercase}
+.founders{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:12px}
+.founders span{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.9rem}
+.founders small{font-family:var(--hand);font-size:1rem;letter-spacing:0;text-transform:none;color:var(--olive-text);margin-left:5px}
+
+/* ---------- next retreat + form ---------- */
+.next{position:relative;color:var(--cream);isolation:isolate;background:var(--ink)}
+.next > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 92%;z-index:-2}
+.next::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(16,16,12,.85) 0%,rgba(16,16,12,.6) 55%,rgba(16,16,12,.35) 100%)}
+.next .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.next .eyebrow{color:var(--amber)}
+.next h2{color:var(--amber)}
+.details{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 20px;margin:22px 0 0}
+.details dt{font-weight:600;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;opacity:.75;padding-top:4px}
+.details dd{margin:0}
+.faq{margin-top:26px;display:grid;gap:14px;max-width:52ch}
+.faq b{display:block;font-weight:600}
+.faq p{opacity:.9;font-size:.98rem}
+
+.form{background:var(--sand);color:var(--ink);padding:clamp(22px,3vw,30px);display:grid;gap:12px}
+.form h3{font-weight:600;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase}
+.form .hint{font-size:.9rem;color:var(--olive-text)}
+.field{display:grid;gap:4px}
+.field label{font-weight:600;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--olive-text)}
+.field input,.field textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid rgba(31,30,27,.25);padding:10px 12px;width:100%;border-radius:0}
+.field textarea{min-height:84px;resize:vertical}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.form .btn{justify-self:start}
+.form .status{font-size:.9rem;min-height:1.3em}
+.form .status.ok{color:var(--olive-text);font-weight:600}
+.form .status.err{color:var(--rust);font-weight:600}
+.alt{font-size:.85rem;color:var(--olive-text)}
+.alt code{font-family:var(--type);user-select:all;word-break:break-all}
+
+/* ---------- floating register-interest card ---------- */
+.float{position:fixed;right:clamp(12px,2vw,24px);bottom:calc(clamp(12px,2vw,24px) + env(safe-area-inset-bottom,0px));z-index:30;width:min(340px,calc(100vw - 24px));transition:opacity .25s,transform .25s}
+.float.away{opacity:0;transform:translateY(16px);pointer-events:none}
+.float-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink);color:var(--cream);padding:10px 10px 10px 16px;box-shadow:0 14px 30px -12px rgba(0,0,0,.55)}
+.float-bar .t{display:grid;line-height:1.25;min-width:0}
+.float-bar .t b{font-weight:600;font-size:.82rem;letter-spacing:.04em}
+.float-bar .t span{font-family:var(--hand);color:var(--amber);font-size:1.1rem}
+.float .panel{margin-bottom:8px;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);max-height:calc(100vh - 120px);overflow:auto}
+.float .x{appearance:none;border:0;background:none;font:600 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--olive-text);cursor:pointer;justify-self:end;padding:4px}
+
+footer{padding-block:44px 120px;display:grid;gap:22px;font-size:.9rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:start}
+.foot img{width:140px}
+.help{max-width:52ch;display:grid;gap:4px}
+.small{font-size:.8rem;color:var(--olive-text)}
+
+@media (max-width:900px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fact:nth-child(2){border-right:0}
+  .fact{border-bottom:1px solid rgba(31,30,27,.14)}
+  .facts .cta{grid-column:1/-1}
+  .problem .grid,.proof .grid,.people,.next .grid{grid-template-columns:minmax(0,1fr)}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .plist{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+  .top nav{display:none}
+  .steps{grid-template-columns:minmax(0,1fr);gap:18px}
+  .step{grid-template-columns:112px minmax(0,1fr);column-gap:14px;row-gap:4px;align-items:start}
+  .step .print{grid-row:1 / span 4}
+  .step .n{margin-top:0}
+  .row2{grid-template-columns:minmax(0,1fr)}
+  .float{left:0;right:0;bottom:0;width:100%}
+  .float-bar{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  .float .panel{margin:0 8px 8px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero" id="top">
+  <img class="bg" src="img/hero-beach-croajingalong.jpg" alt="Five men sitting in a circle talking on a wild beach below misty hills" width="2200" height="1467" fetchpriority="high">
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="img/wc-logo-amber.png" alt="Wildly Calm" width="587" height="245"></a>
+      <nav aria-label="Sections">
+        <a href="#problem">Why</a>
+        <a href="#how">How it works</a>
+        <a href="#proof">Past retreats</a>
+        <a href="#next">Next retreat</a>
+      </nav>
+    </div>
+  </header>
+  <div class="wrap">
+    <p class="tag">Men's retreats · Nurture the man, strengthen the boy</p>
+    <h1>Plenty of mates. <em>Not many you'd ring at 11pm.</em></h1>
+    <p class="sub">Wildly Calm runs small outdoor retreats for men in their twenties and thirties. Three days somewhere wild, something hard to do together, and the honest conversations that don't happen at the pub.</p>
+    <div class="facts" role="group" aria-label="Next retreat at a glance">
+      <div class="fact"><span class="k">Next retreat</span><span class="v">Barrington River, NSW</span></div>
+      <div class="fact"><span class="k">When</span><span class="v">Fri 4 to Sun 6 Dec</span></div>
+      <div class="fact"><span class="k">What</span><span class="v">Canoeing, camping, fire, circle</span></div>
+      <div class="fact"><span class="k">Who</span><span class="v">Men 20s to 30s, small group</span></div>
+      <div class="cta"><a class="btn" href="#register">Register interest</a></div>
+    </div>
+  </div>
+</div>
+
+<section class="problem" id="problem">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">Sound familiar?</p>
+      <h2>Surrounded by people. Nobody who knows how you're really going.</h2>
+      <ul class="pains">
+        <li><q>Good, mate. Flat out.</q><p>Run club, catch-ups, a birthday on the weekend. A full calendar, and the real stuff never comes up.</p></li>
+        <li><q>I'll sort it out myself.</q><p>The lone wolf habit: never asking for help, never saying it out loud.</p></li>
+        <li><q>Therapy's not really me.</q><p>Fair enough. A paddle, a campfire and a few other blokes is an easier place to start.</p></li>
+      </ul>
+      <p class="answer"><span>That's what Wildly Calm is: the easier place to start.</span></p>
+    </div>
+    <div class="print"><figure class="torn-1"><img src="img/hug-bunya.jpg" alt="Two men hugging on a riverbank, faces hidden under sun hats" width="1400" height="933" style="--ar:4/5" loading="lazy"><figcaption>Camp Bunya - Men's Retreat</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <p class="eyebrow">How a weekend works</p>
+    <h2>Something hard first. Then the talk comes easier.</h2>
+    <ol class="steps">
+      <li class="step">
+        <div class="print"><figure class="torn-2"><img src="img/snow-tors-snowies.jpg" alt="Two men with walking sticks crossing snow below granite tors" width="1600" height="1068" loading="lazy"></figure></div>
+        <span class="n">Step 1</span><b>Do something hard</b><p>A paddle, a hike, a cold river. It gets you out of your head and into your body.</p>
+      </li>
+      <li class="step">
+        <div class="print"><figure class="torn-3"><img src="img/lunch-snowgums-snowies.jpg" alt="Four men in beanies eating lunch from one pot in the snow gums" width="1400" height="935" loading="lazy"></figure></div>
+        <span class="n">Step 2</span><b>Build the space</b><p>Fire, food, firewood, a few ground rules. Everyone pitches in.</p>
+      </li>
+      <li class="step">
+        <div class="print"><figure class="torn-4"><img src="img/beach-circle-croajingalong.jpg" alt="Men sitting in a loose circle on a wild beach" width="1400" height="933" loading="lazy"></figure></div>
+        <span class="n">Step 3</span><b>Open up inside it</b><p>Deep listening, sharing round the fire, and a few daft games so it never gets too heavy.</p>
+      </li>
+      <li class="step">
+        <div class="print"><figure class="torn-1"><img src="img/group-croajingalong.jpg" alt="Eleven men grinning on a beach, arms round each other" width="2000" height="1333" loading="lazy"></figure></div>
+        <span class="n">Step 4</span><b>Take it home</b><p>The group chat keeps going after. So do the friendships.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="proof" id="proof">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">What men say</p>
+      <h2>It lands on the drive home.</h2>
+      <div class="card-wrap"><div class="card torn-3">
+        <blockquote>"I knew I was in a slump, a proper downturn mentally before this trip. It wasn't till I was on the drive home that it truly hit me how important this trip was to the trajectory of my year."</blockquote>
+        <cite>Croajingalong participant</cite>
+      </div></div>
+    </div>
+    <div>
+      <p class="label" style="margin-bottom:14px">Past retreats</p>
+      <div class="trips">
+        <div class="trip"><div class="print"><figure class="torn-2"><img src="img/kayaks-broughton.jpg" alt="A raft of sea kayaks on flat water" width="1400" height="915" loading="lazy"></figure></div><h3>Broughton Island</h3><p>Mar 2025 · Sea kayaks and spearfishing. Where it started.</p></div>
+        <div class="trip"><div class="print"><figure class="torn-4"><img src="img/kayaks-bunya.jpg" alt="Men paddling kayaks on a bush river" width="1400" height="933" loading="lazy"></figure></div><h3>Camp Bunya</h3><p>Oct 2025 · River paddling, yoga, fire.</p></div>
+        <div class="trip"><div class="print"><figure class="torn-1"><img src="img/camp-croajingalong.jpg" alt="Two men laughing at camp" width="1400" height="933" loading="lazy"></figure></div><h3>Croajingalong</h3><p>Feb 2026 · Three days of wilderness hiking on the coast.</p></div>
+        <div class="trip"><div class="print"><figure class="torn-3"><img src="img/fireside-drawing-snowies.jpg" alt="A man drawing by a stone fireplace" width="1400" height="935" loading="lazy"></figure></div><h3>The Snowies</h3><p>Sep 2026 · Snow hike, sauna, ice bath, show and tell.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="principles" id="who">
+  <div class="wrap">
+    <p class="eyebrow">What we stand for</p>
+    <h2>Community. Play. Authenticity.</h2>
+    <div class="plist">
+      <div><b>Community</b><p>Growing together and leaning on each other. There's more to life than being a lone wolf.</p></div>
+      <div><b>Play</b><p>What's the point unless you're having fun? Room for the boy who still wants to climb trees.</p></div>
+      <div><b>Authenticity</b><p>Dropping the "one of the boys" act and stepping into a healthier way of being a man.</p></div>
+    </div>
+    <div class="people">
+      <div>
+        <h3>Peers, not counsellors.</h3>
+        <p class="founders"><span>Lockie Ranson<small>co-founder</small></span><span>Kieran Maguire<small>co-founder</small></span><span>Sam Davis<small>co-founder</small></span></p>
+      </div>
+      <p>Wildly Calm is run by three mates. None of us is a therapist and we don't pretend to be. We've sat in the circle ourselves and now help hold it. If someone needs more than a weekend can give, our job is to help him find it. <span class="small">Wildly Calm is a NSW not-for-profit.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="next" id="next">
+  <img class="bg" src="img/river-bunya-wide.jpg" alt="Men paddling past reeds on a bush river" width="2000" height="1333" loading="lazy">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">Next retreat</p>
+      <h2>Barrington River Men's Retreat</h2>
+      <p class="tag" style="margin-top:8px">Canoe | Connect | Express</p>
+      <dl class="details">
+        <dt>When</dt><dd>Friday 4 to Sunday 6 December 2026</dd>
+        <dt>Where</dt><dd>Barrington River, NSW</dd>
+        <dt>What</dt><dd>Three days canoeing the river, camping, fire and circle</dd>
+        <dt>Who</dt><dd>Men in their twenties and thirties. Small group, on purpose.</dd>
+      </dl>
+      <div class="faq">
+        <div><b>Do I need to be fit or outdoorsy?</b><p>No. You don't need to be good at talking about feelings either. You just need to turn up.</p></div>
+        <div><b>Is this therapy?</b><p>No. It's peers, not counsellors. If you need more support, we'll help you find it.</p></div>
+      </div>
+    </div>
+    <div id="register">
+      <form class="form" data-form novalidate>
+        <h3>Register your interest</h3>
+        <p class="hint">Leave your details and we'll send the plan, the price and the ticket link when it's live.</p>
+        <div class="row2">
+          <div class="field"><label for="r-name">Name</label><input id="r-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="r-email">Email</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="r-msg">Anything you want to ask? (optional)</label><textarea id="r-msg" name="message"></textarea></div>
+        <button class="btn" type="submit">Register interest</button>
+        <p class="status" role="status" aria-live="polite"></p>
+        <p class="alt">Or message <a href="https://www.instagram.com/wildlycalmretreats/" rel="noopener">@wildlycalmretreats</a>, or email <code>wildlycalmretreats@gmail.com</code></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="foot">
+    <img src="img/wc-logo-01.png" alt="Wildly Calm" width="587" height="245">
+    <div class="help">
+      <b>Need to talk to someone now?</b>
+      <p>Lifeline 13 11 14 · MensLine Australia 1300 78 99 78 · Emergency 000</p>
+      <p class="small">Free and open 24/7. A weekend away is no substitute for them.</p>
+    </div>
+  </div>
+  <p class="small">Wildly Calm · Sydney, NSW · ABN 11 518 768 964 · <a href="https://www.instagram.com/wildlycalmretreats/" rel="noopener">@wildlycalmretreats</a> · Brand by Rosie</p>
+</footer>
+
+<div class="float" id="float">
+  <div class="panel" id="float-panel" hidden>
+    <form class="form" data-form novalidate>
+      <button class="x" type="button" id="float-close">Close</button>
+      <h3>Register your interest</h3>
+      <p class="hint">Barrington River, 4 to 6 December. We'll send the plan, the price and the ticket link.</p>
+      <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <button class="btn" type="submit">Register interest</button>
+      <p class="status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="float-bar">
+    <div class="t"><b>Barrington River · 4 to 6 Dec</b><span>Canoe | Connect | Express</span></div>
+    <button class="btn" type="button" id="float-open" aria-expanded="false" aria-controls="float-panel">Register</button>
+  </div>
+</div>
+
+<script>
+// Where registrations go. Empty = not connected yet, and the form says so instead of pretending.
+var FORM_ENDPOINT = '';
+
+(function () {
+  var fl = document.getElementById('float'), panel = document.getElementById('float-panel'),
+      open = document.getElementById('float-open'), close = document.getElementById('float-close');
+  function setOpen(v) { panel.hidden = !v; open.setAttribute('aria-expanded', v ? 'true' : 'false'); open.textContent = v ? 'Close' : 'Register'; if (v) document.getElementById('f-name').focus(); }
+  open.addEventListener('click', function () { setOpen(panel.hidden); });
+  close.addEventListener('click', function () { setOpen(false); open.focus(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); open.focus(); } });
+  // Step aside while the hero facts bar or the main form is on screen.
+  if ('IntersectionObserver' in window) {
+    var seen = new Set();
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
+      fl.classList.toggle('away', seen.size > 0 && panel.hidden);
+    }, { threshold: 0.25 });
+    io.observe(document.querySelector('.facts')); io.observe(document.getElementById('register'));
+  }
+})();
+
+document.querySelectorAll('[data-form]').forEach(function (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var status = form.querySelector('.status'), name = form.elements.name, email = form.elements.email;
+    status.className = 'status';
+    if (!name.value.trim()) { status.textContent = 'Add your name so we know who to reply to.'; status.classList.add('err'); name.focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test(email.value.trim())) { status.textContent = 'That email doesn\'t look right. Check it and try again.'; status.classList.add('err'); email.focus(); return; }
+    if (!FORM_ENDPOINT) { status.textContent = 'Not connected yet. For now, message us on Instagram or email wildlycalmretreats@gmail.com.'; status.classList.add('err'); return; }
+    status.textContent = 'Sending...';
+    fetch(FORM_ENDPOINT, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+      .then(function () { status.textContent = 'Thanks, ' + name.value.trim().split(' ')[0] + '. We\'ll be in touch with the details.'; status.classList.add('ok'); form.reset(); })
+      .catch(function () { status.textContent = 'That didn\'t send. Message us on Instagram or email wildlycalmretreats@gmail.com instead.'; status.classList.add('err'); });
+  });
+});
+</script>
+</body>
+</html>

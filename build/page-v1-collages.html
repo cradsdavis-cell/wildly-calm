@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wildly Calm</title>
+<meta name="description" content="Small outdoor men's retreats in the Australian bush. Hike, connect, express. Nurture the man, strengthen the boy.">
+<meta property="og:title" content="Wildly Calm">
+<meta property="og:description" content="Men's retreats. Hike | Connect | Express. Nurture the man, strengthen the boy.">
+<meta property="og:image" content="img/hero-beach-croajingalong.jpg">
+<link rel="icon" href="img/wc-symbol-05.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Gaegu:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: the Instagram grid as a page. Full-bleed film photos carry the amber logo and
+   handwritten lines; sand bands hold the words; olive panels hold the principles;
+   memories sit as white-bordered torn prints with typewriter captions. */
+:root{
+  --sand:#D7D2C6;      /* ground, Rosie's guide + IG avatar */
+  --sand-deep:#CCC6B8;
+  --paper:#FBFAF6;     /* white print borders on the collages */
+  --ink:#1F1E1B;
+  --olive:#5E604A;     /* panels, as on the Guiding Principles post */
+  --olive-text:#55573F;/* olive for small text on sand */
+  --amber:#F7AD19;     /* logo + lines on photos */
+  --cream:#F1EEE6;     /* text and linework on olive and photos */
+  --rust:#A65E39;      /* rare highlight on sand */
+  --sans:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Gaegu","Bradley Hand","Comic Sans MS",cursive;
+  --type:"Courier Prime","Courier New",ui-monospace,monospace;
+  --measure:60ch;
+  --gutter:clamp(16px,4vw,40px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:var(--sans);text-wrap:balance}
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:clamp(64px,9vw,112px)}
+
+/* type, after the IG posts: tracked caps, never heavy */
+h2{font-weight:600;font-size:clamp(1.55rem,3.2vw,2.35rem);line-height:1.15;letter-spacing:.07em;text-transform:uppercase}
+.eyebrow{font-family:var(--hand);font-size:1.5rem;line-height:1;color:var(--rust)}
+.prose{display:grid;gap:1.05em;max-width:var(--measure)}
+.label{font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--olive-text)}
+
+/* film grain over everything */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.14;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* full-bleed photo panels (hero, itinerary, next retreat) */
+.photo{position:relative;color:var(--cream);isolation:isolate;background:var(--ink)}
+.photo > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.photo::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(18,18,14,.62) 0%,rgba(18,18,14,.28) 48%,rgba(18,18,14,.08) 100%)}
+.on-photo{font-family:var(--hand);color:var(--amber);font-size:clamp(1.25rem,2.1vw,1.55rem);line-height:1.3;text-shadow:0 1px 10px rgba(0,0,0,.35)}
+
+/* header sits on the hero */
+.top{position:absolute;inset:0 0 auto 0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.top img{width:92px;height:auto}
+.top nav{display:flex;gap:clamp(14px,3vw,30px);flex-wrap:wrap;font-weight:600;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase}
+.top nav a{text-decoration:none;color:var(--cream);padding-block:4px;border-bottom:1px solid transparent}
+.top nav a:hover{border-color:var(--amber)}
+
+.hero{min-height:clamp(600px,90vh,860px);display:grid;align-items:start}
+.hero > .bg{object-position:50% 88%}
+.hero .wrap{width:100%;display:grid;gap:clamp(14px,2vw,20px);padding-block:clamp(96px,12vw,130px) 72px}
+.hero .sym{width:clamp(70px,8vw,110px);margin-left:clamp(70px,11vw,150px)}
+.hero h1 img{width:clamp(240px,34vw,440px);margin-top:-4px}
+.hero .on-photo{display:grid;gap:4px}
+.hero .lines{margin-top:10px}
+.hero .handle{position:absolute;right:var(--gutter);bottom:28px;text-align:right;font-size:1.15rem}
+.next-btn{justify-self:start;margin-top:8px;display:inline-block;font:600 .76rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--amber);padding:14px 18px;text-decoration:none}
+.next-btn:hover{background:var(--cream)}
+
+/* tagline band */
+.tagline{padding-block:clamp(48px,7vw,80px);position:relative}
+.tagline h2{font-weight:500;letter-spacing:.14em;font-size:clamp(1.35rem,3vw,2.1rem)}
+.tagline p{max-width:52ch;margin-top:18px;font-size:1.12rem}
+.topo{position:absolute;right:-12vw;top:-60px;width:min(720px,80vw);height:auto;aspect-ratio:1;z-index:0;pointer-events:none;opacity:.6}
+.tagline .wrap,.why .wrap{position:relative;z-index:1}
+
+.why{background:var(--sand-deep)}
+.split{display:grid;gap:clamp(28px,5vw,64px);grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+.split > *{min-width:0}
+.stack{display:grid;gap:18px;align-content:start}
+
+/* itinerary-post section */
+.itin{min-height:clamp(560px,80vh,760px);display:grid;align-items:center}
+.itin > .bg{object-position:50% 60%}
+.itin::before{background:linear-gradient(90deg,rgba(16,16,12,.74) 0%,rgba(16,16,12,.5) 55%,rgba(16,16,12,.2) 100%)}
+.itin .wrap{width:100%;display:grid;gap:22px;padding-block:clamp(64px,8vw,96px)}
+.itin .mark{position:absolute;top:28px;right:var(--gutter);width:120px}
+.itin h2{color:var(--cream);max-width:20ch}
+.itin .on-photo{font-size:1.5rem}
+.steps{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:14px;max-width:46ch}
+.steps li{display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:10px;align-items:baseline}
+.steps .n{font-family:var(--hand);font-size:1.3rem;color:var(--amber)}
+.steps b{font-weight:600}
+.steps span.d{display:block;font-size:.95rem;opacity:.85}
+
+/* collages: white-bordered torn prints over a background photo */
+.trips{display:grid;gap:clamp(64px,9vw,112px);margin-top:clamp(36px,5vw,56px)}
+.trip{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,64px);align-items:center}
+.trip:nth-child(even){grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.trip:nth-child(even) .trip-text{order:2}
+.trip-text{display:grid;gap:12px;min-width:0}
+.trip h3{font-weight:600;font-size:clamp(1.3rem,2.4vw,1.7rem);letter-spacing:.08em;text-transform:uppercase}
+.collage{position:relative;aspect-ratio:4/3;min-width:0;max-width:100%}
+.collage > .back{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.print{position:absolute;filter:drop-shadow(0 12px 16px rgba(0,0,0,.42))}
+.print figure{background:var(--paper);padding:8px;margin:0}
+.print img{width:100%;height:auto;aspect-ratio:var(--ar,3/2);object-fit:cover}
+.print figcaption{font-family:var(--type);font-size:.78rem;line-height:1.2;padding:8px 2px 2px;color:var(--ink)}
+.p-a{width:52%;top:6%;left:24%}
+.p-b{width:48%;bottom:-8%;right:-3%}
+.p-c{width:44%;top:-6%;left:-3%}
+/*TORN*/
+
+.note{background:var(--olive);color:var(--cream);aspect-ratio:4/3;display:grid;align-content:center;gap:16px;padding:clamp(24px,4vw,44px)}
+.note img{width:130px}
+.note p{font-family:var(--hand);font-size:1.4rem;line-height:1.3}
+.note .soon{font-family:var(--type);font-size:.8rem;opacity:.8}
+
+/* testimonial: a typed card */
+.testimonial{display:grid;justify-items:center;filter:drop-shadow(0 18px 26px rgba(0,0,0,.28))}
+.card{background:var(--paper);max-width:760px;padding:clamp(28px,4vw,48px);display:grid;gap:18px}
+.card blockquote{margin:0;font-family:var(--type);font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.55}
+.card cite{font-style:normal;font-family:var(--hand);font-size:1.3rem;color:var(--rust)}
+
+/* principles: the IG post, as a panel */
+.principles{background:var(--olive);color:var(--cream)}
+.principles .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,80px);align-items:start}
+.p-head{display:grid;gap:18px;justify-items:start}
+.p-head .sym{width:90px;margin-left:70px}
+.p-head .logo{width:min(240px,70vw);margin-top:-8px}
+.p-head h2{font-weight:400;letter-spacing:.2em;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.3;margin-top:10px}
+.p-list{display:grid;gap:28px}
+.p-list b{display:block;font-weight:600;font-size:1.05rem;letter-spacing:.08em;margin-bottom:4px}
+.p-list p{max-width:56ch;opacity:.92}
+
+.founders{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:6px}
+.founders span{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.92rem}
+.founders small{font-family:var(--hand);font-size:1.05rem;letter-spacing:0;text-transform:none;color:var(--olive-text);margin-left:6px}
+
+/* next retreat */
+.next{min-height:clamp(600px,86vh,820px);display:grid;align-items:center}
+.next > .bg{object-position:50% 92%}
+.next::before{background:linear-gradient(100deg,rgba(16,16,12,.78) 0%,rgba(16,16,12,.55) 50%,rgba(16,16,12,.25) 100%)}
+.next .wrap{width:100%;padding-block:clamp(72px,9vw,110px)}
+.next .split{align-items:center}
+.next .sym{width:90px}
+.next h2{color:var(--amber);font-weight:600}
+.next .on-photo{display:grid;gap:2px}
+.next .plain{max-width:44ch;font-size:1rem;margin-top:8px}
+.contact{display:grid;gap:14px;background:var(--sand);color:var(--ink);padding:clamp(22px,3vw,30px)}
+.contact h3{font-weight:600;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase}
+.contact-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.contact-row code{font-family:var(--type);font-size:1rem;background:var(--paper);padding:6px 10px;user-select:all;word-break:break-all}
+.contact .small{font-size:.85rem;color:var(--olive-text)}
+.btn{appearance:none;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:600 .74rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;padding:10px 12px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--ink);color:var(--sand)}
+.btn.solid{background:var(--olive);border-color:var(--olive);color:var(--cream)}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink)}
+
+footer{padding-block:48px 56px;display:grid;gap:26px;font-size:.9rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;align-items:start}
+.foot img{width:150px}
+.help{max-width:52ch;display:grid;gap:6px}
+.help b{font-weight:600;letter-spacing:.04em}
+.small{font-size:.8rem;color:var(--olive-text)}
+
+@media (max-width:860px){
+  .split,.trip,.trip:nth-child(even),.principles .wrap{grid-template-columns:minmax(0,1fr)}
+  .trip:nth-child(even) .trip-text{order:0}
+  .itin .mark{display:none}
+  .hero .handle{position:static;text-align:left;margin-top:10px}
+}
+@media (max-width:560px){
+  .top nav{display:none}
+  .steps li{grid-template-columns:4.6rem minmax(0,1fr)}
+  .collage{aspect-ratio:1/1}
+  .p-a{width:62%;left:8%}.p-b{width:58%}.p-c{width:54%}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#top" aria-label="Wildly Calm home"><img src="img/wc-symbol-cream.png" alt="" width="712" height="332"></a>
+    <nav aria-label="Sections">
+      <a href="#how">How it works</a>
+      <a href="#been">Where we've been</a>
+      <a href="#who">Who we are</a>
+      <a href="#next">Next retreat</a>
+    </nav>
+  </div>
+</header>
+
+<div class="photo hero" id="top">
+  <img class="bg" src="img/hero-beach-croajingalong.jpg" alt="Men sitting in a circle on a wild beach below misty hills, Croajingalong" width="2200" height="1467" fetchpriority="high">
+  <div class="wrap">
+    <img class="sym" src="img/wc-symbol-amber.png" alt="" width="712" height="332">
+    <h1><img src="img/wc-logo-amber.png" alt="Wildly Calm" width="587" height="245"></h1>
+    <div class="on-photo">
+      <span>Men's Retreats</span>
+      <span class="lines">Hike | Connect | Express</span>
+      <span>Next: canoeing the Barrington River, 4th to 6th December</span>
+    </div>
+    <a class="next-btn" href="#next">Get the details</a>
+  </div>
+  <p class="on-photo handle">@WildlyCalmRetreats</p>
+</div>
+
+<div class="tagline">
+  <canvas class="topo" id="topo" width="720" height="720" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <h2>Nurture the man. Strengthen the boy.</h2>
+    <p>Small outdoor retreats for men in their twenties and thirties. A few days somewhere wild, something hard to do together, and then the conversations that usually never happen.</p>
+  </div>
+</div>
+
+<section class="why" id="why">
+  <div class="wrap split">
+    <div class="stack">
+      <p class="eyebrow">Why we do this</p>
+      <h2>Plenty of mates. Not many you'd ring at 11pm.</h2>
+    </div>
+    <div class="prose">
+      <p>Ask a bloke how he's going and you'll get "good, mate, flat out". He's probably not lying. Morning swim, run club, two catch-ups and a birthday on the weekend. He's surrounded by people all week.</p>
+      <p>Ask him who he'd call to say what's really going on, and the list gets short. A lot of us run the lone wolf mission: do it on our own, never ask for help, "I just haven't found my tribe yet".</p>
+      <p>Life is good. But it's better shared. Most of us would never book a counselling session on a whim. Almost all of us would say yes to a three-day hike, a cold plunge or a night around a fire with a few other men. So that's the door we use.</p>
+    </div>
+  </div>
+</section>
+
+<section class="photo itin" id="how">
+  <img class="bg" src="img/fire-bunya.jpg" alt="Sleeping bags and logs around a smoking campfire on a riverbank clearing" width="1400" height="933" loading="lazy">
+  <img class="mark" src="img/wc-logo-cream.png" alt="" width="587" height="245">
+  <div class="wrap">
+    <p class="on-photo">How a weekend works</p>
+    <h2>Something hard first. Then the talk comes easier.</h2>
+    <ol class="steps">
+      <li><span class="n">Step 1:</span><span><b>Do something hard</b><span class="d">A long hike, a paddle, snow, a cold river. Together.</span></span></li>
+      <li><span class="n">Step 2:</span><span><b>Build the space</b><span class="d">Fire, food, firewood, ground rules. Everyone pitches in.</span></span></li>
+      <li><span class="n">Step 3:</span><span><b>Open up inside it</b><span class="d">Deep listening, sharing round the fire, a few daft games.</span></span></li>
+      <li><span class="n">Step 4:</span><span><b>The way back</b><span class="d">The walk or drive out, when most of it lands.</span></span></li>
+      <li><span class="n">Step 5:</span><span><b>Take it home</b><span class="d">Staying in touch after, so it isn't just a good weekend.</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="wrap" id="been">
+  <p class="eyebrow">Where we've been</p>
+  <h2>It's not an adventure unless something goes wrong.</h2>
+  <div class="trips">
+    <article class="trip">
+      <div class="trip-text">
+        <p class="label">March 2025 · Where it started</p>
+        <h3>Broughton Island</h3>
+        <p>It started as a spontaneous weekend kayaking trip. Sea kayaks out to an island off Port Stephens, spearfishing for dinner, a tarp strung between the rocks. We came back with one big lesson: we loved it, and we wanted to keep making spaces like this for men.</p>
+      </div>
+      <div class="collage">
+        <img class="back" src="img/sunset-broughton.jpg" alt="" width="1800" height="1176" loading="lazy">
+        <div class="print p-a"><figure class="torn-1"><img src="img/kayaks-broughton.jpg" alt="A raft of sea kayaks on flat grey water, one man waving" width="1400" height="915" loading="lazy"><figcaption>Broughton Island - Men's Retreat</figcaption></figure></div>
+        <div class="print p-b"><figure class="torn-2"><img src="img/catch-broughton.jpg" alt="Three men in wetsuits on the beach holding up the fish they speared" width="1400" height="915" loading="lazy"></figure></div>
+      </div>
+    </article>
+    <article class="trip">
+      <div class="trip-text">
+        <p class="label">October 2025</p>
+        <h3>Camp Bunya</h3>
+        <p>Kayaks on the river, yoga on the grass, sleeping bags round the fire. We came home knowing we wanted to go deeper, stay longer and get wilder.</p>
+      </div>
+      <div class="collage">
+        <img class="back" src="img/yoga-bunya.jpg" alt="" width="1400" height="933" loading="lazy">
+        <div class="print p-c"><figure class="torn-3"><img src="img/watermelon-bunya.jpg" alt="A man in a bucket hat biting into watermelon in a kayak" width="1400" height="933" loading="lazy"><figcaption>Camp Bunya - lunch stop</figcaption></figure></div>
+        <div class="print p-b"><figure class="torn-4"><img src="img/hug-bunya.jpg" alt="Two men hugging, faces hidden under sun hats" width="1400" height="933" loading="lazy"></figure></div>
+      </div>
+    </article>
+    <article class="trip">
+      <div class="trip-text">
+        <p class="label">February 2026 · East Gippsland, VIC</p>
+        <h3>Croajingalong</h3>
+        <p>A busload of Sydney men, three days of wilderness hiking and off-grid camping on the coast. Workshops between the walking, deep listening by the fire, and one afternoon where everyone painted the man they want to be. Grown men, paintbrushes, a lot of laughing, then some very honest pictures.</p>
+      </div>
+      <div class="collage">
+        <img class="back" src="img/creek-croajingalong.jpg" alt="" width="933" height="1400" loading="lazy">
+        <div class="print p-a"><figure class="torn-2"><img src="img/group-croajingalong.jpg" alt="Eleven men grinning on a beach in front of coastal scrub, arms round each other" width="2000" height="1333" loading="lazy"><figcaption>Croajingalong - Men's Retreat</figcaption></figure></div>
+        <div class="print p-b"><figure class="torn-1"><img src="img/camp-croajingalong.jpg" alt="Two men laughing at camp beside a cooking pot" width="1400" height="933" loading="lazy"></figure></div>
+      </div>
+    </article>
+    <article class="trip">
+      <div class="trip-text">
+        <p class="label">September 2026 · Crackenback, NSW</p>
+        <h3>The Snowies</h3>
+        <p>A smaller group in a cottage near Thredbo. A hike in the snow, sauna, ice bath. On the first night every man brought one thing he loves and talked about it by the fire for ten minutes. It sounds soft. Then you watch a quiet bloke light up about the thing he cares about.</p>
+      </div>
+      <div class="collage">
+        <img class="back" src="img/snow-tors-snowies.jpg" alt="" width="1600" height="1068" loading="lazy">
+        <div class="print p-c"><figure class="torn-4"><img src="img/lunch-snowgums-snowies.jpg" alt="Four men in beanies eating lunch from a pot in the snow gums" width="1400" height="935" loading="lazy"><figcaption>Snowy Mountains - Men's Retreat</figcaption></figure></div>
+        <div class="print p-b"><figure class="torn-2"><img src="img/fireside-drawing-snowies.jpg" alt="A man in a beanie drawing at a table beside a stone fireplace" width="1400" height="935" loading="lazy"></figure></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap testimonial">
+  <div class="card torn-3">
+    <blockquote>"I knew I was in a slump, a proper downturn mentally before this trip. It wasn't till I was on the drive home that it truly hit me how important this trip was to the trajectory of my year."</blockquote>
+    <cite>Croajingalong participant</cite>
+  </div>
+</section>
+
+<section class="principles" id="who">
+  <div class="wrap">
+    <div class="p-head">
+      <img class="sym" src="img/wc-symbol-cream.png" alt="" width="712" height="332">
+      <img class="logo" src="img/wc-logo-cream.png" alt="Wildly Calm" width="587" height="245">
+      <h2>Our guiding principles</h2>
+    </div>
+    <div class="p-list">
+      <div><b>Community</b><p>Growing together and leaning on each other. There's more to life than being a lone wolf, and it's a relief to be around men without the judgement and ego.</p></div>
+      <div><b>Play</b><p>What's the point unless you're having fun? We make room for the boy inside who still wants to be silly, go on adventures and climb trees.</p></div>
+      <div><b>Authenticity</b><p>Dropping the act of being "one of the boys", leaving the toxic stuff behind and stepping into a healthier way of being a man.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="split">
+    <div class="stack">
+      <p class="eyebrow">Who we are</p>
+      <h2>Peers, not counsellors.</h2>
+    </div>
+    <div class="prose">
+      <p>Wildly Calm is run by three mates. None of us is a therapist and we don't pretend to be. No guru at the front and no shouting at the sky. Just men who have sat in the circle ourselves and now help hold it. If someone needs more than a weekend can give, our job is to help him find it.</p>
+      <p class="founders"><span>Lockie Ranson<small>co-founder</small></span><span>Kieran Maguire<small>co-founder</small></span><span>Sam Davis<small>co-founder</small></span></p>
+      <p class="small">Brand by Rosie. Wildly Calm is a NSW not-for-profit incorporated association.</p>
+    </div>
+  </div>
+</section>
+
+<section class="photo next" id="next">
+  <img class="bg" src="img/river-bunya-wide.jpg" alt="Men paddling kayaks past reeds on a bush river" width="2000" height="1333" loading="lazy">
+  <div class="wrap split">
+    <div class="stack">
+      <img class="sym" src="img/wc-symbol-amber.png" alt="" width="712" height="332">
+      <h2>Barrington River Men's Retreat</h2>
+      <div class="on-photo">
+        <span>Canoe | Connect | Express</span>
+        <span>December 4th - 6th</span>
+        <span>Small, on purpose</span>
+      </div>
+      <p class="plain">Three days canoeing the Barrington River. You don't need to be fit, outdoorsy or good at talking about feelings. You just need to turn up.</p>
+    </div>
+    <div class="contact">
+      <h3>Get the details</h3>
+      <p>Message us and we'll send you the details and the ticket link when it's live. Or send this page to the mate you think needs it.</p>
+      <div class="contact-row"><code id="email">wildlycalmretreats@gmail.com</code><button class="btn" type="button" id="copy">Copy</button></div>
+      <div class="contact-row">
+        <a class="btn solid" href="https://www.instagram.com/wildlycalmretreats/" rel="noopener">Message us on Instagram</a>
+        <a class="btn" href="mailto:wildlycalmretreats@gmail.com?subject=Barrington%20River%20retreat">Email us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="foot">
+    <img src="img/wc-logo-01.png" alt="Wildly Calm" width="587" height="245">
+    <div class="help">
+      <b>Need to talk to someone now?</b>
+      <p>Lifeline 13 11 14 · MensLine Australia 1300 78 99 78 · Emergency 000</p>
+      <p class="small">These services are free and open 24/7. A weekend away is no substitute for them.</p>
+    </div>
+  </div>
+  <p class="small">Wildly Calm · Sydney, NSW · ABN 11 518 768 964 · <a href="https://www.instagram.com/wildlycalmretreats/" rel="noopener">@wildlycalmretreats</a></p>
+</footer>
+
+<script>
+// Contour lines, like the swirl on the brand guide cover. Drawn once.
+(function () {
+  var c = document.getElementById('topo'); if (!c || !c.getContext) return;
+  var ctx = c.getContext('2d'), W = c.width, cx = W * 0.5, cy = W * 0.5;
+  ctx.strokeStyle = '#EEEAE1'; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var ph = [rnd() * 6.28, rnd() * 6.28, rnd() * 6.28];
+  for (var k = 0; k < 9; k++) {
+    var base = 38 + k * 36; ctx.lineWidth = 9 - k * 0.45; ctx.beginPath();
+    for (var a = 0; a <= 6.2832 + 0.05; a += 0.05) {
+      var r = base * (1 + 0.11 * Math.sin(3 * a + ph[0] + k * 0.25) + 0.07 * Math.sin(5 * a + ph[1] - k * 0.2) + 0.04 * Math.sin(2 * a + ph[2]));
+      var x = cx + r * Math.cos(a), y = cy + r * 0.86 * Math.sin(a);
+      if (a === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+})();
+document.getElementById('copy').addEventListener('click', function () {
+  var btn = this, el = document.getElementById('email');
+  function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy'; }, 1800); }
+  function select() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected'); }
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(el.textContent).then(function () { done('Copied'); }, select); else select();
+});
+</script>
+</body>
+</html>

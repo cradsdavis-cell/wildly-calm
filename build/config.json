@@ -1,0 +1,4 @@
+{
+  "_comment": "Paste the Humanitix event link into tickets_url and rebuild (python3 build/build.py). Empty = buttons send people to Instagram to register interest.",
+  "tickets_url": ""
+}
