@@ -193,7 +193,7 @@ def head(title, desc, img):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <meta property="og:title" content="{e(title)}">
-<meta property="og:image" content="../img/{img}">
+<meta property="og:image" content="https://wildlycalm.org/img/{img}">
 <link rel="icon" href="../img/wc-symbol-05.png">
 {FONTS}
 <style>{CSS}</style>
