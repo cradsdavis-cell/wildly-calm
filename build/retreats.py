@@ -8,7 +8,7 @@ import html, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import json
-from seo import SITE, script, breadcrumbs, event, sitemap
+from seo import SITE, script, breadcrumbs, event, sitemap, llms
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -333,4 +333,5 @@ if __name__ == '__main__':
     open(os.path.join(ROOT, 'retreats', 'barrington-river.html'), 'w').write(barrington())
     paths = ['/', '/retreats/barrington-river.html'] + [f"/retreats/{r['slug']}.html" for r in RETREATS]
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(sitemap(paths))
+    open(os.path.join(ROOT, 'llms.txt'), 'w').write(llms(RETREATS))
     print('retreat pages:', len(RETREATS) + 1, '· sitemap:', len(paths), 'urls')

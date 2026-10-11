@@ -74,3 +74,26 @@ def sitemap(paths):
     urls = ''.join(f'  <url><loc>{SITE}{p}</loc></url>\n' for p in paths)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n')
+
+
+def llms(retreats):
+    """llms.txt (https://llmstxt.org): a plain map of the site for AI assistants.
+    Facts only, all of them already on the pages."""
+    lines = [
+        '# Wildly Calm', '',
+        "> Wildly Calm runs small outdoor retreats for men in their twenties and thirties,",
+        "> from Sydney, NSW: three days somewhere wild, something hard to do together, then",
+        "> the honest conversations that don't happen at the pub. It is a NSW not-for-profit",
+        "> incorporated association run by three co-founders, Lockie Ranson, Kieran Maguire",
+        "> and Sam Davis. Peers, not counsellors: it is not therapy.", '',
+        "- Next retreat: Barrington River Men's Retreat, canoeing the Barrington River, NSW,",
+        "  Friday 4 to Sunday 6 December 2026.",
+        '- Contact: Instagram @wildlycalmretreats or wildlycalmretreats@gmail.com.',
+        '- Need to talk to someone now: Lifeline 13 11 14, MensLine Australia 1300 78 99 78, emergency 000.', '',
+        '## Pages', '',
+        f'- [Wildly Calm]({SITE}/): what a weekend looks like, past retreats, the guiding principles and the next retreat.',
+        f"- [Barrington River Men's Retreat]({SITE}/retreats/barrington-river.html): the next retreat, 4 to 6 December 2026.",
+    ]
+    for r in retreats:
+        lines.append(f"- [{r['name']}, {r['when']}]({SITE}/retreats/{r['slug']}.html): {r['seo_desc']}")
+    return '\n'.join(lines) + '\n'
