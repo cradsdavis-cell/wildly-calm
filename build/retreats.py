@@ -4,7 +4,11 @@ Every page is self-contained HTML (own doctype, inline CSS) so it works on any s
 and inside the artifact preview. Copy rule: only facts from the WC notes, Instagram captions
 or Sam. No invented numbers, quotes or places.
 """
-import html, os
+import html, os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import json
+from seo import SITE, script, breadcrumbs, event, sitemap
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -12,7 +16,9 @@ TORN = open(os.path.join(HERE, 'torn.css')).read()
 
 RETREATS = [
     dict(
-        slug='broughton-island', name='Broughton Island', when='March 2025', where='Port Stephens, NSW',
+        slug='broughton-island',
+        seo_title='Broughton Island Kayaking Weekend, Port Stephens',
+        seo_desc='March 2025: a handful of mates sea-kayaked out to Broughton Island off Port Stephens, speared fish for dinner and camped in the rocks. Where Wildly Calm started.', name='Broughton Island', when='March 2025', where='Port Stephens, NSW',
         tag='Where it started',
         hook='A spontaneous weekend kayaking trip that turned into Wildly Calm.',
         hero='sunset-broughton.jpg', hero_pos='50% 70%',
@@ -35,7 +41,9 @@ RETREATS = [
         ],
     ),
     dict(
-        slug='camp-bunya', name='Camp Bunya', when='October 2025', where=None,
+        slug='camp-bunya',
+        seo_title="Camp Bunya Men's Retreat",
+        seo_desc="October 2025, our first men's retreat: river days in kayaks, yoga on the grass and sleeping bags round the fire.", name='Camp Bunya', when='October 2025', where=None,
         tag='Our first retreat',
         hook='River days, yoga on the grass and sleeping bags round the fire.',
         hero='kayaks-bunya.jpg', hero_pos='50% 60%',
@@ -57,7 +65,9 @@ RETREATS = [
         ],
     ),
     dict(
-        slug='croajingalong', name='Croajingalong', when='February 2026', where='East Gippsland, VIC',
+        slug='croajingalong',
+        seo_title="Croajingalong Men's Retreat, East Gippsland",
+        seo_desc='February 2026: a busload of Sydney men, three days of coastal hiking and off-grid camping in Croajingalong National Park, and deep listening round the fire.', name='Croajingalong', when='February 2026', where='East Gippsland, VIC',
         tag='Three days on a wild coast',
         hook='A busload of Sydney men, three days of wilderness hiking and off-grid camping.',
         hero='beach-circle-croajingalong.jpg', hero_pos='50% 55%',
@@ -80,7 +90,9 @@ RETREATS = [
         ],
     ),
     dict(
-        slug='the-snowies', name='The Snowies', when='September 2026', where='Crackenback, NSW',
+        slug='the-snowies',
+        seo_title="Snowy Mountains Men's Retreat, Crackenback",
+        seo_desc='September 2026: hiking in the snow near Thredbo, breathwork and yoga, show and tell by the fire, then a sauna and an ice bath.', name='The Snowies', when='September 2026', where='Crackenback, NSW',
         tag='Our first one in the snow',
         hook='A small group, a cottage near Thredbo, and snow on the ground.',
         hero='snow-tors-snowies.jpg', hero_pos='50% 60%',
@@ -184,7 +196,8 @@ FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="p
 
 def e(s): return html.escape(s, quote=True)
 
-def head(title, desc, img):
+def head(title, desc, img, path, graph):
+    url = SITE + path
     return f'''<!doctype html>
 <html lang="en-AU">
 <head>
@@ -192,10 +205,20 @@ def head(title, desc, img):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
+<link rel="canonical" href="{url}">
+<meta property="og:site_name" content="Wildly Calm">
 <meta property="og:title" content="{e(title)}">
-<meta property="og:image" content="https://wildlycalm.org/img/{img}">
+<meta property="og:description" content="{e(desc)}">
+<meta property="og:image" content="{SITE}/img/{img}">
+<meta property="og:url" content="{url}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#D7D2C6">
 <link rel="icon" href="../img/wc-symbol-05.png">
+<link rel="apple-touch-icon" href="../img/wc-symbol-05.png">
 {FONTS}
+{script(graph)}
 <style>{CSS}</style>
 </head>
 <body>'''
@@ -231,7 +254,8 @@ def torn(i): return f'torn-{i % 4 + 1}'
 
 def page(r):
     meta = r['when'] + (f" · {r['where']}" if r['where'] else '')
-    out = [head(f"{r['name']} · Wildly Calm", r['hook'], r['hero'])]
+    path = f"/retreats/{r['slug']}.html"
+    out = [head(f"{r['seo_title']} · Wildly Calm", r['seo_desc'], r['hero'], path, [breadcrumbs(r['name'], path)])]
     out.append(f'''<div class="hero">
   <img class="bg" src="../img/{r['hero']}" alt="" width="1400" height="933" style="object-position:{r['hero_pos']}" fetchpriority="high">
   {header()}
@@ -263,7 +287,11 @@ def page(r):
     return '\n'.join(out)
 
 def barrington():
-    out = [head("Barrington River Men's Retreat · Wildly Calm", 'Three days canoeing the Barrington River, NSW. 4 to 6 December 2026. Men in their 20s and 30s, small group.', 'river-bunya-wide.jpg')]
+    path = '/retreats/barrington-river.html'
+    tickets = json.load(open(os.path.join(HERE, 'config.json'))).get('tickets_url', '').strip()
+    out = [head("Barrington River Men's Retreat, 4 to 6 Dec 2026 · Wildly Calm",
+                'Three days canoeing the Barrington River, NSW, Friday 4 to Sunday 6 December 2026. Camping, fire and the circle. Men in their 20s and 30s, small group.',
+                'river-bunya-wide.jpg', path, [breadcrumbs("Barrington River Men's Retreat", path), event(tickets)])]
     out.append(f'''<div class="hero">
   <img class="bg" src="../img/river-bunya-wide.jpg" alt="" width="2000" height="1333" style="object-position:50% 92%" fetchpriority="high">
   {header()}
@@ -303,4 +331,6 @@ if __name__ == '__main__':
     for r in RETREATS:
         open(os.path.join(ROOT, 'retreats', r['slug'] + '.html'), 'w').write(page(r))
     open(os.path.join(ROOT, 'retreats', 'barrington-river.html'), 'w').write(barrington())
-    print('retreat pages:', len(RETREATS) + 1)
+    paths = ['/', '/retreats/barrington-river.html'] + [f"/retreats/{r['slug']}.html" for r in RETREATS]
+    open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(sitemap(paths))
+    print('retreat pages:', len(RETREATS) + 1, '· sitemap:', len(paths), 'urls')

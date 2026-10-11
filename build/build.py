@@ -10,6 +10,9 @@ cta={'CTA_URL': t or 'https://www.instagram.com/wildlycalmretreats/',
      'CTA_TITLE': 'Tickets' if t else 'Register your interest',
      'CTA_NOTE': 'Tickets are on Humanitix.' if t else "Tickets go on sale soon. Message us on Instagram and we'll send you the plan, the price and the ticket link as soon as it's live."}
 for k,v in cta.items(): s=s.replace('{{'+k+'}}',v)
+sys.path.insert(0, here)
+from seo import home_jsonld
+s=s.replace('{{JSONLD}}', home_jsonld(t))
 open(f'{root}/index.html','w').write(s)
 if len(sys.argv)>1:  # artifact preview: strip the document skeleton
     t=s
