@@ -236,6 +236,19 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opa
 .memories figcaption i{display:block;font-style:normal;color:var(--rust);margin-top:2px}
 .memories figcaption b{display:block;font-weight:700}
 .testimonial{display:grid;justify-items:center;margin-top:clamp(48px,6vw,72px);filter:drop-shadow(0 18px 26px rgba(0,0,0,.28))}
+.voices{margin-top:clamp(48px,6vw,72px)}
+.voices h3{font-family:var(--hand);font-weight:400;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--rust);margin:0 0 clamp(18px,3vw,30px);line-height:1}
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,32px);align-items:start}
+.note{filter:drop-shadow(0 12px 18px rgba(0,0,0,.22));transition:transform .2s}
+.note .card{max-width:none;padding:clamp(20px,2.6vw,30px);gap:12px}
+.note .card blockquote{font-size:clamp(.95rem,1.4vw,1.06rem)}
+.note .card cite{font-size:1.15rem}
+.note.lead{grid-column:span 2}
+.note.lead .card blockquote{font-size:clamp(1.02rem,1.9vw,1.25rem)}
+.notes .note:nth-child(3n+1){transform:rotate(-1.4deg) translateY(6px)}
+.notes .note:nth-child(3n+2){transform:rotate(1.1deg) translateY(-4px)}
+.notes .note:nth-child(3n){transform:rotate(-.6deg) translateY(12px)}
+.notes .note:hover{transform:rotate(0) translateY(-4px)}
 .card{background:var(--paper);max-width:760px;padding:clamp(26px,4vw,44px);display:grid;gap:16px}
 .card blockquote{margin:0;font-family:var(--type);font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:1.55}
 .card cite{font-style:normal;font-family:var(--hand);font-size:1.3rem;color:var(--rust)}
@@ -307,12 +320,15 @@ footer{padding-block:44px 120px;display:grid;gap:22px;font-size:.9rem}
   .facts .cta{grid-column:1/-1}
   .problem .wrap,.proof .head,.principles .wrap,.peers .wrap,.next > .wrap{grid-template-columns:minmax(0,1fr)}
   .memories{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .notes{grid-template-columns:repeat(2,minmax(0,1fr))}
   .itin .mark{display:none}
 }
 @media (max-width:560px){
   .top{display:none}
   .steps li{grid-template-columns:88px minmax(0,1fr);gap:14px}
   .row2{grid-template-columns:minmax(0,1fr)}
+  .notes{grid-template-columns:minmax(0,1fr)}
+  .note.lead{grid-column:auto}
   .float{left:0;right:0;bottom:0;width:100%}
   .float-bar{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
   .float .panel{margin:0 8px 8px}
@@ -397,10 +413,16 @@ footer{padding-block:44px 120px;display:grid;gap:22px;font-size:.9rem}
         <a class="mem" href="retreats/the-snowies.html"><div class="print"><figure class="torn-3"><img src="img/fireside-drawing-snowies.jpg" alt="A man drawing by a stone fireplace" width="1400" height="935" loading="lazy"><figcaption><b>The Snowies</b>Sep 2026 - snow, sauna, ice bath<i>See the retreat</i></figcaption></figure></div></a>
       </div>
     </div>
-    <div class="testimonial">
-      <div class="card torn-3">
-        <blockquote>"I knew I was in a slump, a proper downturn mentally before this trip. It wasn't till I was on the drive home that it truly hit me how important this trip was to the trajectory of my year."</blockquote>
-        <cite>Croajingalong participant</cite>
+    <div class="voices">
+      <h3>In their words</h3>
+      <div class="notes">
+      <div class="note lead"><div class="card torn-3"><blockquote>"I knew I was in a slump, a proper downturn mentally before this trip. It wasn't till I was on the drive home that it truly hit me how important this trip was to the trajectory of my year."</blockquote><cite>Croajingalong participant</cite></div></div>
+      <div class="note"><div class="card torn-1"><blockquote>"There simply isn't enough space in my life for deep conversations with men."</blockquote><cite>Camp Bunya participant</cite></div></div>
+      <div class="note"><div class="card torn-2"><blockquote>"A space where a group of men can be boys. And boys can be men."</blockquote><cite>Camp Bunya participant</cite></div></div>
+      <div class="note"><div class="card torn-4"><blockquote>"I have had vulnerable conversations with other men. But not in such an intentional and accepting environment."</blockquote><cite>Croajingalong participant</cite></div></div>
+      <div class="note"><div class="card torn-1"><blockquote>"There was such a different energy from the first day's bridge jumps, with what felt like 12 individuals, compared to the end of the trip feeling like 1 brotherhood."</blockquote><cite>Camp Bunya participant</cite></div></div>
+      <div class="note"><div class="card torn-3"><blockquote>"I went into it with a certain expectation of the walk being a doddle and instead it was a bush bash. A bushbash is no longer a thing of dread but rather simply something to do."</blockquote><cite>Croajingalong participant</cite></div></div>
+      <div class="note"><div class="card torn-2"><blockquote>"Had never done a deep listening. Never had the opportunity. Powerful experience."</blockquote><cite>Camp Bunya participant</cite></div></div>
       </div>
     </div>
   </div>
