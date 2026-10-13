@@ -52,7 +52,7 @@ RETREATS = [
             "We learned a lot that weekend. The biggest lesson: go deeper, stay longer, get wilder. Everything we've run since has been built on it.",
         ],
         did=['Kayaking the river', 'Yoga on the grass', 'Sharing round the fire', 'Sleeping out under the stars'],
-        quote=None,
+        quote=("A place to adventure in the wild but also to really look inwards and reflect. A safe space for you to express yourself and ask hard questions. Somewhere for you to show your weaknesses but also to celebrate your strengths.", 'Camp Bunya participant'),
         photos=[
             ('watermelon-bunya.jpg', 'Lunch stop', 'A man in a bucket hat biting into watermelon in a kayak'),
             ('yoga-bunya.jpg', 'Yoga on the grass', 'A group doing yoga on the grass in front of tall trees'),
