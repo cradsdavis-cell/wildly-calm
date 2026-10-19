@@ -175,7 +175,16 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opa
 .p-list b{display:block;font-weight:600;font-size:1.05rem;letter-spacing:.08em;margin-bottom:4px}
 .p-list p{max-width:56ch;opacity:.92}
 
-.peers .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.peers .wrap.reels{display:block;margin-top:clamp(32px,5vw,56px)}
+.reel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.5vw,28px)}
+.reel{margin:0}
+.reel video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--ink)}
+.reel figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.reel figcaption b{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.92rem}
+.sides{display:flex;gap:6px}
+.sides button{appearance:none;cursor:pointer;font:600 .68rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:8px 10px;border:1px solid var(--olive);background:transparent;color:var(--olive-text)}
+.sides button[aria-pressed="true"]{background:var(--olive);color:var(--cream)}
+.peers .wrap:not(.reels){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
 .founders{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:16px}
 .founders span{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.92rem}
 .founders small{font-family:var(--hand);font-size:1.05rem;letter-spacing:0;text-transform:none;color:var(--olive-text);margin-left:6px}
@@ -243,6 +252,8 @@ footer{padding-block:44px 120px;display:grid;gap:22px;font-size:.9rem}
   .float{left:0;right:0;bottom:0;width:100%}
   .float-bar{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
   .float .panel{margin:0 8px 8px}
+  .reel-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+  .reel{scroll-snap-align:start}
 }
 </style>
 </head>
@@ -367,7 +378,29 @@ footer{padding-block:44px 120px;display:grid;gap:22px;font-size:.9rem}
       <p class="small" style="margin-top:12px">Brand by Rosie. Wildly Calm is a NSW not-for-profit incorporated association.</p>
     </div>
   </div>
+  <div class="wrap reels">
+    <p class="eyebrow">Meet us</p>
+    <div class="reel-grid">
+      <figure class="reel" data-who="lockie"><video controls playsinline preload="none" poster="video/lockie-calm.jpg" src="video/lockie-calm.mp4" aria-label="Lockie, the calm side"></video><figcaption><b>Lockie</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+      <figure class="reel" data-who="kieran"><video controls playsinline preload="none" poster="video/kieran-calm.jpg" src="video/kieran-calm.mp4" aria-label="Kieran, the calm side"></video><figcaption><b>Kieran</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+      <figure class="reel" data-who="sam"><video controls playsinline preload="none" poster="video/sam-calm.jpg" src="video/sam-calm.mp4" aria-label="Sam, the calm side"></video><figcaption><b>Sam</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+    </div>
+  </div>
 </section>
+<script>
+document.querySelectorAll('.reel').forEach(function(f){
+  var v=f.querySelector('video'),who=f.dataset.who,name=f.querySelector('b').textContent;
+  f.querySelectorAll('.sides button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var s=b.dataset.side;
+      f.querySelectorAll('.sides button').forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
+      v.pause();v.poster='video/'+who+'-'+s+'.jpg';v.src='video/'+who+'-'+s+'.mp4';
+      v.setAttribute('aria-label',name+', the '+s+' side');
+    });
+  });
+  v.addEventListener('play',function(){document.querySelectorAll('.reel video').forEach(function(o){if(o!==v)o.pause()})});
+});
+</script>
 
 <section class="photo next" id="next">
   <img class="bg" src="img/river-bunya-wide.jpg" alt="Men paddling past reeds on a bush river" width="2000" height="1333" loading="lazy">
