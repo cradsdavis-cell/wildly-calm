@@ -319,7 +319,8 @@ def barrington():
       <div><b>Is this therapy?</b><p>No. It's peers, not counsellors. If you need more support, we'll help you find it.</p></div>
     </div>
   </div>
-  <aside class="did"><h3>Tickets</h3><p style="font-size:.98rem">Tickets and the price are on the way. Head to the booking section for the latest.</p><a class="btn" href="../#register" style="justify-self:start">Book or register</a></aside>
+  ''' + (f'<aside class="did"><h3>Tickets</h3><p style="font-size:.98rem">Tickets are on sale now on Humanitix.</p><a class="btn" href="{e(tickets)}" rel="noopener" style="justify-self:start">Get tickets</a></aside>' if tickets else
+         '<aside class="did"><h3>Tickets</h3><p style="font-size:.98rem">Tickets and the price are on the way. Head to the booking section for the latest.</p><a class="btn" href="../#register" style="justify-self:start">Book or register</a></aside>') + '''
 </div></section>''')
     cards = ''.join(f'<a class="other" href="{o["slug"]}.html"><div class="print"><figure class="{torn(i)}"><img src="../img/{o["photos"][0][0]}" alt="" loading="lazy"></figure></div><b>{e(o["name"])}</b><span>{e(o["when"])}</span></a>' for i, o in enumerate(RETREATS[:3]))
     out.append(f'''<section class="gallery"><div class="wrap"><p class="eyebrow">Before this one</p><h2>Past retreats</h2><div class="others">{cards}</div><p style="margin-top:18px"><a href="the-snowies.html">And the Snowies, September 2026</a></p></div></section>''')
