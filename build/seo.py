@@ -76,7 +76,7 @@ def sitemap(paths):
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n')
 
 
-def llms(retreats):
+def llms(retreats, posts=()):
     """llms.txt (https://llmstxt.org): a plain map of the site for AI assistants.
     Facts only, all of them already on the pages."""
     lines = [
@@ -96,4 +96,8 @@ def llms(retreats):
     ]
     for r in retreats:
         lines.append(f"- [{r['name']}, {r['when']}]({SITE}/retreats/{r['slug']}.html): {r['seo_desc']}")
+    if posts:
+        lines += ['', '## Blog', '', f'- [Blog]({SITE}/blog/): writing from the people behind Wildly Calm.']
+        for p in posts:
+            lines.append(f"- [{p['title']}, by {p['author']}]({SITE}/blog/{p['slug']}.html): {p['seo_desc']}")
     return '\n'.join(lines) + '\n'

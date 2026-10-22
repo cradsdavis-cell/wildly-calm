@@ -22,3 +22,4 @@ if len(sys.argv)>1:  # artifact preview: strip the document skeleton
 print('built')
 import subprocess
 subprocess.run([sys.executable, os.path.join(here, 'retreats.py')], check=True)
+subprocess.run([sys.executable, os.path.join(here, 'blog.py')], check=True)

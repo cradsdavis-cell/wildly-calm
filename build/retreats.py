@@ -226,7 +226,7 @@ def head(title, desc, img, path, graph):
 def header():
     return '''<header class="top"><div class="wrap">
   <a class="home" href="../"><img src="../img/wc-logo-amber.png" alt="Wildly Calm home" width="519" height="163"></a>
-  <nav aria-label="Site"><a href="../#proof">All retreats</a><a href="../#how">How it works</a><a class="btn" href="../#register">Tickets</a></nav>
+  <nav aria-label="Site"><a href="../#proof">All retreats</a><a href="../#how">How it works</a><a href="../blog/">Blog</a><a class="btn" href="../#register">Tickets</a></nav>
 </div></header>'''
 
 def nextup():
@@ -333,6 +333,8 @@ if __name__ == '__main__':
         open(os.path.join(ROOT, 'retreats', r['slug'] + '.html'), 'w').write(page(r))
     open(os.path.join(ROOT, 'retreats', 'barrington-river.html'), 'w').write(barrington())
     paths = ['/', '/retreats/barrington-river.html'] + [f"/retreats/{r['slug']}.html" for r in RETREATS]
+    import blog
+    paths += blog.paths()
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(sitemap(paths))
-    open(os.path.join(ROOT, 'llms.txt'), 'w').write(llms(RETREATS))
+    open(os.path.join(ROOT, 'llms.txt'), 'w').write(llms(RETREATS, blog.POSTS))
     print('retreat pages:', len(RETREATS) + 1, '· sitemap:', len(paths), 'urls')
