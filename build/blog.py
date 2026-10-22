@@ -49,7 +49,26 @@ POSTS = [
             ('kieran-rewild-sign.jpg', 'Celebrating putting up the main festival sign at Rewild', 'Two men below a hand-painted REWILD sign strung between poles', 899, 1599),
         ],
     ),
+    dict(
+        slug='the-other-half-of-the-room',
+        title='The Other Half of the Room',
+        author='Sam Davis',
+        role='Co-founder, Wildly Calm',
+        date='2026-09-25', date_label='September 2026',
+        kind='An essay',
+        seo_desc='Men and women are being sold stories about each other. The first AI most of us lived with was built to sell them. What should the next one be built for?',
+        standfirst='Men and women are being sold stories about each other. The first AI most of us lived with was built to sell them. What should the next one be built for?',
+        hero='ohr-campfire.jpg', hero_1200='ohr-campfire.jpg', hero_pos='50% 50%',
+        hero_alt='A figure in a hooded jacket sitting alone on a log beside a campfire at night, sparks rising, a tent behind',
+        card=('ohr-fire.jpg', 1600, 1067),
+        # The essay body is HTML copied from the published page; see the note at the top of the file.
+        body_file='the-other-half-of-the-room.html',
+        canonical='https://crads-ai.com/writing/the-other-half-of-the-room',
+        first_published='This essay first appeared on <a href="https://crads-ai.com/writing/the-other-half-of-the-room" rel="noopener">crads-ai.com</a> in September 2026.',
+    ),
 ]
+
+INDEX_HERO = ('kieran-carrauntoohil-hero.jpg', 'kieran-carrauntoohil-hero-1200.jpg', '50% 55%')
 
 BLOG_CSS = """
 .posts{display:grid;gap:clamp(28px,4vw,44px);margin-top:clamp(24px,3vw,36px)}
@@ -71,12 +90,27 @@ BLOG_CSS = """
 .grid.two .print{margin:0}
 .grid.two img.tall{aspect-ratio:4/5;object-fit:cover}
 .grid.two figcaption{padding-bottom:22px}
+.essay h2{margin-top:1.4em;font-size:clamp(1.1rem,2.2vw,1.4rem)}
+.essay a{color:var(--rust);text-underline-offset:3px}
+.essay em{font-style:italic}
+.essay-figure{margin:clamp(12px,2vw,20px) 0;background:var(--paper);padding:8px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.3))}
+.essay-figure:nth-of-type(odd){transform:rotate(-.6deg)}.essay-figure:nth-of-type(even){transform:rotate(.5deg)}
+.essay-figure img{width:100%;max-height:80vh;object-fit:cover}
+.essay-figure figcaption{font-family:var(--type);font-size:.78rem;line-height:1.3;padding:8px 2px 4px}
+.essay-figure .credit{color:var(--olive-text)}
+.essay-refs{margin-top:1.5em;font-size:.88rem}
+.essay-refs summary{cursor:pointer;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}
+.essay-refs h3{font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin:1.2em 0 .4em;color:var(--olive-text)}
+.essay-refs ul{margin:0;padding-left:1.1em;display:grid;gap:.5em;overflow-wrap:anywhere}
+.first-pub{margin-top:1.4em;font-size:.88rem;color:var(--olive-text)}
 @media (max-width:760px){.post-card,.grid.two{grid-template-columns:minmax(0,1fr)}}
 """
 
 
-def blog_head(title, desc, img, path, graph, og_type='website'):
+def blog_head(title, desc, img, path, graph, og_type='website', canonical=None):
     h = head(title, desc, img, path, graph).replace('<style>' + CSS, '<style>' + CSS + BLOG_CSS)
+    if canonical:  # cross-posted: point search engines at the original
+        h = h.replace(f'<link rel="canonical" href="{SITE}{path}">', f'<link rel="canonical" href="{canonical}">')
     return h.replace('<meta property="og:type" content="website">', f'<meta property="og:type" content="{og_type}">')
 
 
@@ -86,8 +120,9 @@ def crumbs(*items):
 
 
 def hero(img, img_1200, pos, alt, kicker, title, hook):
+    srcset = f' srcset="../img/{img_1200} 1200w, ../img/{img} 2000w" sizes="100vw"' if img_1200 != img else ''
     return f'''<div class="hero">
-  <img class="bg" src="../img/{img}" srcset="../img/{img_1200} 1200w, ../img/{img} 2000w" sizes="100vw" alt="{e(alt)}" width="2000" height="1333" style="object-position:{pos}" fetchpriority="high">
+  <img class="bg" src="../img/{img}"{srcset} alt="{e(alt)}" width="2000" height="1333" style="object-position:{pos}" fetchpriority="high">
   {header()}
   <div class="wrap">
     <p class="on-photo">{kicker}</p>
@@ -104,10 +139,20 @@ def post_page(p):
         'datePublished': p['date'], 'image': SITE + '/img/' + p['hero'], 'url': SITE + path,
         'author': {'@type': 'Person', 'name': p['author']}, 'publisher': {'@id': ORG_ID},
         'inLanguage': 'en-AU'}]
-    out = [blog_head(f"{p['title']}, by {p['author']} · Wildly Calm", p['seo_desc'], p['hero'], path, graph, 'article')]
+    if p.get('canonical'):
+        graph[1]['mainEntityOfPage'] = p['canonical']
+    out = [blog_head(f"{p['title']}, by {p['author']} · Wildly Calm", p['seo_desc'], p['hero'], path, graph, 'article', p.get('canonical'))]
     out.append(hero(p['hero'], p['hero_1200'], p['hero_pos'], p['hero_alt'],
                     f"Blog · {e(p['kind'])}", p['title'],
                     f"{e(p['standfirst'])}<br><span class=\"byline\">{e(p['author'])} · {e(p['date_label'])}</span>"))
+    if p.get('body_file'):
+        body = open(os.path.join(HERE, 'posts', p['body_file'])).read()
+        out.append(f'''<section class="article"><div class="wrap">
+  <p class="eyebrow">{e(p['author'])}, {e(p['role'].split(',')[0].lower())}</p>
+  <div class="prose essay">{body}</div>
+  <p class="first-pub">{p['first_published']}</p>
+</div></section>''')
+        return '\n'.join(out + [more(), footer()])
     intro = ''.join(f'<p>{e(x)}</p>' for x in p['intro'])
     poem = ''.join(f'<p>{e(x)}</p>' for x in p['poem'])
     out.append(f'''<section class="article"><div class="wrap">
@@ -121,24 +166,34 @@ def post_page(p):
   <p class="eyebrow">Photos by {e(p['author'].split()[0])}</p><h2>{e(p['photos_title'])}</h2>
   <div class="grid two">{prints}</div>
 </div></section>''')
-    out.append('''<section><div class="wrap"><p class="eyebrow">More</p><h2>Back to the blog</h2>
-  <p style="margin-top:14px"><a class="btn" href="./">All posts</a> <a class="btn" href="../retreats/barrington-river.html" style="background:var(--cream)">Next retreat</a></p>
-</div></section>''')
+    out.append(more())
     out.append(footer())
     return '\n'.join(out)
 
 
+def more():
+    return '''<section><div class="wrap"><p class="eyebrow">More</p><h2>Back to the blog</h2>
+  <p style="margin-top:14px"><a class="btn" href="./">All posts</a> <a class="btn" href="../retreats/barrington-river.html" style="background:var(--cream)">Next retreat</a></p>
+</div></section>'''
+
+
+def card(p):
+    if p.get('card'):
+        return p['card']
+    f, _, _, w, h = p['photos'][0]
+    return f, w, h
+
+
 def index_page():
     path = '/blog/'
-    lead = POSTS[0]
     graph = [crumbs(('Wildly Calm', '/'), ('Blog', path)),
              {'@type': 'Blog', 'name': 'Wildly Calm blog', 'url': SITE + path, 'publisher': {'@id': ORG_ID}, 'inLanguage': 'en-AU',
               'blogPost': [{'@type': 'BlogPosting', 'headline': p['title'], 'url': f"{SITE}/blog/{p['slug']}.html", 'datePublished': p['date']} for p in POSTS]}]
-    out = [blog_head('Blog · Wildly Calm', 'Writing from the people behind Wildly Calm: poems, stories and what we learn out there.', lead['hero'], path, graph)]
-    out.append(hero(lead['hero'], lead['hero_1200'], lead['hero_pos'], '', 'Wildly Calm', 'Blog',
+    out = [blog_head('Blog · Wildly Calm', 'Writing from the people behind Wildly Calm: poems, stories and what we learn out there.', INDEX_HERO[0], path, graph)]
+    out.append(hero(*INDEX_HERO, '', 'Wildly Calm', 'Blog',
                     'Writing from the people behind Wildly Calm.'))
     cards = ''.join(f'''<a class="post-card" href="{p['slug']}.html">
-  <div class="print"><figure class="{torn(i + 1)}"><img src="../img/{p['photos'][0][0]}" alt="" width="{p['photos'][0][3]}" height="{p['photos'][0][4]}" loading="lazy"></figure></div>
+  <div class="print"><figure class="{torn(i + 1)}"><img src="../img/{card(p)[0]}" alt="" width="{card(p)[1]}" height="{card(p)[2]}" loading="lazy"></figure></div>
   <div><p class="eyebrow">{e(p['kind'])}</p><h2>{e(p['title'])}</h2><p>{e(p['standfirst'])}</p><p class="by" style="margin-top:10px">{e(p['author'])} · {e(p['date_label'])}</p><span class="read">Read it</span></div>
 </a>''' for i, p in enumerate(POSTS))
     out.append(f'<section><div class="wrap"><p class="eyebrow">Latest</p><div class="posts">{cards}</div></div></section>')
@@ -147,7 +202,8 @@ def index_page():
 
 
 def paths():
-    return ['/blog/'] + [f"/blog/{p['slug']}.html" for p in POSTS]
+    # cross-posts with a canonical elsewhere stay out of the sitemap
+    return ['/blog/'] + [f"/blog/{p['slug']}.html" for p in POSTS if not p.get('canonical')]
 
 
 if __name__ == '__main__':

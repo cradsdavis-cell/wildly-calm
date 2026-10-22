@@ -24,3 +24,4 @@
 
 - [Blog](https://wildlycalm.org/blog/): writing from the people behind Wildly Calm.
 - [A Good Man, by Kieran Maguire](https://wildlycalm.org/blog/a-good-man.html): Kieran Maguire, one of Wildly Calm's co-founders, on the conversation with his dad that let him go to Ireland, and the poem he wrote on the flight out.
+- [The Other Half of the Room, by Sam Davis](https://wildlycalm.org/blog/the-other-half-of-the-room.html): Men and women are being sold stories about each other. The first AI most of us lived with was built to sell them. What should the next one be built for?

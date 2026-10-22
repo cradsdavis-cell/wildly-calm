@@ -160,6 +160,19 @@ footer img{width:130px}
 .grid.two .print{margin:0}
 .grid.two img.tall{aspect-ratio:4/5;object-fit:cover}
 .grid.two figcaption{padding-bottom:22px}
+.essay h2{margin-top:1.4em;font-size:clamp(1.1rem,2.2vw,1.4rem)}
+.essay a{color:var(--rust);text-underline-offset:3px}
+.essay em{font-style:italic}
+.essay-figure{margin:clamp(12px,2vw,20px) 0;background:var(--paper);padding:8px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.3))}
+.essay-figure:nth-of-type(odd){transform:rotate(-.6deg)}.essay-figure:nth-of-type(even){transform:rotate(.5deg)}
+.essay-figure img{width:100%;max-height:80vh;object-fit:cover}
+.essay-figure figcaption{font-family:var(--type);font-size:.78rem;line-height:1.3;padding:8px 2px 4px}
+.essay-figure .credit{color:var(--olive-text)}
+.essay-refs{margin-top:1.5em;font-size:.88rem}
+.essay-refs summary{cursor:pointer;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}
+.essay-refs h3{font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin:1.2em 0 .4em;color:var(--olive-text)}
+.essay-refs ul{margin:0;padding-left:1.1em;display:grid;gap:.5em;overflow-wrap:anywhere}
+.first-pub{margin-top:1.4em;font-size:.88rem;color:var(--olive-text)}
 @media (max-width:760px){.post-card,.grid.two{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
