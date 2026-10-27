@@ -98,14 +98,14 @@ RETREATS = [
         hero='snow-tors-snowies.jpg', hero_pos='50% 60%',
         story=[
             "Our first retreat in the snow. A small group in a cottage at Crackenback, just down the road from Thredbo.",
-            "We hiked out across the snow among the granite tors, cooked lunch in the snow gums, and came back to a sauna and an ice bath.",
+            "We hiked out across the snow among the granite tors, cooked breakfast in the snow gums, and came back to a sauna and an ice bath.",
             "On the first night every man brought one thing he loves and talked about it by the fire for ten minutes. It sounds soft. Then you watch a quiet bloke light up about the thing he cares about.",
         ],
         did=['Hiking in the snow', 'Breathwork and yoga', 'Deep listening', 'Show and tell by the fire', 'Sauna and ice bath'],
         quote=None,
         photos=[
             ('tors-figures-snowies.jpg', 'Snowy Mountains - Men\'s Retreat', 'Two tiny figures crossing snow below granite tors'),
-            ('lunch-snowgums-snowies.jpg', 'Lunch in the snow gums', 'Four men in beanies eating lunch from one pot'),
+            ('lunch-snowgums-snowies.jpg', 'Breakfast in the snow gums', 'Four men in beanies eating breakfast from one pot'),
             ('fireside-drawing-snowies.jpg', 'Show and tell', 'A man drawing at a table beside a stone fireplace'),
             ('kitchen-snowies.jpg', 'The cottage', 'Men cooking together in a timber cottage kitchen'),
             ('map-snowies.jpg', 'Which way?', 'Two men checking a phone in the snow'),
