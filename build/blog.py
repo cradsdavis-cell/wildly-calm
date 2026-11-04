@@ -76,33 +76,37 @@ BLOG_CSS = """
 .post-card .print{margin:0}
 .post-card h2{margin:6px 0 10px}
 .post-card:hover h2{color:var(--rust)}
-.post-card .by{font-family:var(--type);font-size:.85rem;color:var(--olive-text)}
-.post-card .read{display:inline-block;margin-top:14px;font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:2px solid var(--amber);padding-bottom:2px}
-.byline{font-family:var(--type);font-size:.9rem;opacity:.9}
+.post-card .by{font-family:var(--type);font-size:var(--fs-type);color:var(--olive-text)}
+.post-card .read{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--s-2);font-weight:600;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--rust);text-decoration-thickness:2px;text-underline-offset:6px}
+.post-card:hover .read{text-decoration-color:var(--ink)}
+.post-card .print{transition:transform .3s}
+.post-card:hover .print{transform:translateY(-4px)}
+.byline{font-family:var(--type);font-size:var(--fs-small);opacity:.9}
 .article .wrap{max-width:760px}
 .article .prose{max-width:none}
 .poem{margin:clamp(32px,5vw,48px) 0 0;filter:drop-shadow(0 16px 24px rgba(0,0,0,.25))}
 .poem .card{gap:18px;padding:clamp(28px,5vw,52px)}
 .poem h2{font-family:var(--hand);font-weight:700;text-transform:none;letter-spacing:0;font-size:clamp(1.9rem,4vw,2.5rem);color:var(--rust)}
-.poem p{font-family:var(--type);font-size:clamp(1.02rem,1.8vw,1.15rem);line-height:1.7}
-.poem cite{font-style:normal;font-family:var(--hand);font-size:1.3rem;color:var(--rust)}
+.poem cite{font-weight:700;font-size:var(--fs-hand)}
+.poem p{font-family:var(--type);font-size:var(--fs-lead);line-height:1.7}
 .grid.two{columns:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.6vw,30px) clamp(16px,2.4vw,28px);align-items:start}
 .grid.two .print{margin:0}
 .grid.two img.tall{aspect-ratio:4/5;object-fit:cover}
 .grid.two figcaption{padding-bottom:22px}
-.essay h2{margin-top:1.4em;font-size:clamp(1.1rem,2.2vw,1.4rem)}
-.essay a{color:var(--rust);text-underline-offset:3px}
+.essay h2{margin-top:1.4em;font-size:var(--fs-h3)}
+.essay a{text-decoration-color:var(--rust);text-decoration-thickness:2px;text-underline-offset:3px}
+.essay a:hover{text-decoration-color:var(--ink)}
 .essay em{font-style:italic}
-.essay-figure{margin:clamp(12px,2vw,20px) 0;background:var(--paper);padding:8px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.3))}
+.essay-figure{margin:clamp(12px,2vw,20px) 0;background:var(--paper);padding:8px;filter:var(--print-shadow)}
 .essay-figure:nth-of-type(odd){transform:rotate(-.6deg)}.essay-figure:nth-of-type(even){transform:rotate(.5deg)}
 .essay-figure img{width:100%;max-height:80vh;object-fit:cover}
-.essay-figure figcaption{font-family:var(--type);font-size:.78rem;line-height:1.3;padding:8px 2px 4px}
+.essay-figure figcaption{font-family:var(--type);font-size:var(--fs-type);line-height:1.3;padding:8px 2px 4px}
 .essay-figure .credit{color:var(--olive-text)}
-.essay-refs{margin-top:1.5em;font-size:.88rem}
-.essay-refs summary{cursor:pointer;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}
-.essay-refs h3{font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin:1.2em 0 .4em;color:var(--olive-text)}
+.essay-refs{margin-top:1.5em;font-size:var(--fs-small)}
+.essay-refs summary{cursor:pointer;display:list-item;padding-block:15px;line-height:1.3;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:var(--fs-label)}
+.essay-refs h3{font-weight:600;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;margin:1.2em 0 .4em;color:var(--olive-text)}
 .essay-refs ul{margin:0;padding-left:1.1em;display:grid;gap:.5em;overflow-wrap:anywhere}
-.first-pub{margin-top:1.4em;font-size:.88rem;color:var(--olive-text)}
+.first-pub{margin-top:1.4em;font-size:var(--fs-small);color:var(--olive-text)}
 @media (max-width:760px){.post-card,.grid.two{grid-template-columns:minmax(0,1fr)}}
 """
 
@@ -173,7 +177,7 @@ def post_page(p):
 
 def more():
     return '''<section><div class="wrap"><p class="eyebrow">More</p><h2>Back to the blog</h2>
-  <p style="margin-top:14px"><a class="btn" href="./">All posts</a> <a class="btn" href="../retreats/barrington-river.html" style="background:var(--cream)">Next retreat</a></p>
+  <p class="btns" style="margin-top:24px"><a class="btn sand" href="./">All posts</a> <a class="btn line" href="../retreats/barrington-river.html">Next retreat</a></p>
 </div></section>'''
 
 

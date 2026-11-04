@@ -118,78 +118,56 @@ RETREATS = [
 
 ORDER = [r['slug'] for r in RETREATS]
 
-CSS = """
-:root{--sand:#D7D2C6;--sand-deep:#CCC6B8;--paper:#FBFAF6;--ink:#1F1E1B;--olive:#5E604A;--olive-text:#55573F;--amber:#F7AD19;--cream:#F1EEE6;--rust:#A65E39;
---sans:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;--hand:"Gaegu","Bradley Hand","Comic Sans MS",cursive;--type:"Courier Prime","Courier New",ui-monospace,monospace;--gutter:clamp(16px,4vw,40px);color-scheme:light}
-*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{overflow-x:clip}
-body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased}
-img{max-width:100%;height:auto;display:block}a{color:inherit}p{margin:0}h1,h2,h3{margin:0;text-wrap:balance}
-a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-.wrap{max-width:1140px;margin-inline:auto;padding-inline:var(--gutter)}
-section{padding-block:clamp(56px,8vw,96px)}
-h2{font-weight:600;font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.18;letter-spacing:.07em;text-transform:uppercase}
-.eyebrow{font-family:var(--hand);font-size:1.45rem;line-height:1;color:var(--rust);margin-bottom:12px}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.14;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.btn{appearance:none;border:0;cursor:pointer;display:inline-block;text-decoration:none;font:600 .74rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;padding:14px 18px;background:var(--amber);color:var(--ink)}
-.btn:hover{background:var(--cream)}
-.on-photo{font-family:var(--hand);color:var(--amber);font-size:clamp(1.25rem,2vw,1.5rem);line-height:1.3;text-shadow:0 1px 10px rgba(0,0,0,.35)}
-
+CSS = open(os.path.join(HERE, 'base.css')).read() + """
 .hero{position:relative;color:var(--cream);isolation:isolate;background:var(--ink);min-height:clamp(480px,72vh,720px);display:grid;align-items:end}
 .hero > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,18,14,.5) 0%,rgba(18,18,14,.15) 35%,rgba(18,18,14,.75) 100%)}
-.top{position:absolute;inset:0 0 auto 0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
-.top .home img{width:118px}
-.top nav{display:flex;align-items:center;gap:clamp(14px,3vw,28px);font-weight:600;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
-.top nav a:not(.btn){color:var(--cream);text-decoration:none;border-bottom:1px solid transparent;padding-block:4px}
-.top nav a:not(.btn):hover{border-color:var(--amber)}
-.top .btn{padding:11px 14px}
-.hero > .wrap{width:100%;display:grid;gap:10px;padding-block:120px clamp(32px,5vw,56px)}
-.hero h1{font-weight:500;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:.08em;text-transform:uppercase}
-.hero .hook{max-width:52ch;font-size:clamp(1.02rem,1.5vw,1.18rem);opacity:.95}
+.top nav{margin-left:auto}
+.hero > .wrap{width:100%;display:grid;gap:var(--s-3);padding-block:128px clamp(32px,5vw,56px)}
+.hero h1{font-weight:500;font-size:var(--fs-display);line-height:1.05;letter-spacing:.08em;text-transform:uppercase}
+.hero .hook{max-width:52ch;font-size:var(--fs-lead);opacity:.95}
 
-.story .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,5vw,64px);align-items:start}
-.prose{display:grid;gap:1.1em;max-width:60ch;font-size:1.08rem}
-.did{background:var(--olive);color:var(--cream);padding:clamp(22px,3vw,30px);display:grid;gap:12px}
-.did h3{font-weight:600;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
-.did ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.did li{font-family:var(--hand);font-size:1.3rem;line-height:1.2}
+.story .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(32px,5vw,64px);align-items:start}
+.prose{display:grid;gap:1.1em;max-width:var(--measure)}
+.did{background:var(--olive);color:var(--cream);padding:clamp(24px,3vw,32px);display:grid;gap:var(--s-3)}
+.did h3{font-weight:600;font-size:var(--fs-small);letter-spacing:.16em;text-transform:uppercase}
+.did ul{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-2)}
+.did li{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1.2}
 .did li::before{content:"~ ";color:var(--amber)}
-.quote{margin-top:clamp(28px,4vw,40px);filter:drop-shadow(0 16px 24px rgba(0,0,0,.25))}
-.card{background:var(--paper);padding:clamp(22px,3vw,34px);display:grid;gap:12px}
-.card blockquote{margin:0;font-family:var(--type);font-size:clamp(1rem,1.7vw,1.15rem);line-height:1.55}
-.card cite{font-style:normal;font-family:var(--hand);font-size:1.25rem;color:var(--rust)}
+.quote{margin-top:clamp(32px,4vw,48px);filter:drop-shadow(0 16px 24px rgba(0,0,0,.25))}
+.quote .card{padding:clamp(24px,3vw,36px)}
+.quote .card blockquote{font-size:var(--fs-lead)}
 
 .gallery{background:var(--sand-deep)}
-.grid{columns:3 280px;column-gap:clamp(16px,2.4vw,28px);margin-top:clamp(24px,3vw,36px)}
-.print{break-inside:avoid;margin:0 0 clamp(18px,2.6vw,30px);filter:drop-shadow(0 12px 16px rgba(0,0,0,.35))}
-.print figure{background:var(--paper);padding:8px;margin:0}
-.print img{width:100%}
-.print figcaption{font-family:var(--type);font-size:.78rem;line-height:1.25;padding:8px 2px 2px}
+.grid{columns:3 280px;column-gap:clamp(16px,2.4vw,32px);margin-top:clamp(24px,3vw,36px)}
+.grid .print{break-inside:avoid;margin:0 0 clamp(16px,2.6vw,32px)}
 .grid .print:nth-child(3n+1){transform:rotate(-.8deg)}.grid .print:nth-child(3n+2){transform:rotate(.6deg)}
 """ + TORN + """
-.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:24px}
-.other{text-decoration:none;display:grid;gap:8px}
-.other .print{margin:0}
-.other b{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem}
-.other span{font-size:.85rem;color:var(--olive-text)}
-.other:hover b{color:var(--rust)}
+.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);margin-top:var(--s-5)}
+.other{text-decoration:none;display:grid;gap:var(--s-2)}
+.other .print{margin:0;transition:transform .3s}
+.other b{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:var(--fs-small);margin-top:var(--s-1)}
+.other span{font-family:var(--type);font-size:var(--fs-type);color:var(--ink)}
+.other:hover .print,.other:focus-visible .print{transform:translateY(-4px)}
+.other:hover b{text-decoration:underline;text-decoration-color:var(--rust);text-decoration-thickness:2px;text-underline-offset:4px}
+.more-link a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration-color:var(--rust);text-decoration-thickness:2px;text-underline-offset:5px}
+.more-link a:hover{text-decoration-color:var(--ink)}
 
 .nextup{position:relative;color:var(--cream);isolation:isolate;background:var(--ink)}
 .nextup > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 92%;z-index:-2}
 .nextup::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(16,16,12,.85) 0%,rgba(16,16,12,.55) 60%,rgba(16,16,12,.3) 100%)}
-.nextup .wrap{display:grid;gap:14px;justify-items:start}
+.nextup .wrap{display:grid;gap:var(--s-3);justify-items:start}
+.nextup .btn{margin-top:var(--s-3)}
 .nextup h2{color:var(--amber)}
-.details{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 20px;margin:10px 0 0}
-.details dt{font-weight:600;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;padding-top:4px}
-.details dd{margin:0}
-.faq{margin-top:18px;display:grid;gap:14px;max-width:52ch}
-.faq b{display:block;font-weight:600}
-footer{padding-block:40px 56px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;font-size:.85rem}
-footer img{width:130px}
-.small{font-size:.8rem;color:var(--olive-text)}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-5)}
 @media (max-width:860px){.story .wrap{grid-template-columns:minmax(0,1fr)}.others{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.top nav a:not(.btn){display:none}.others{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){
+  .top .wrap{flex-wrap:wrap;row-gap:0}
+  .top nav{order:3;flex-basis:100%;margin-left:0}
+  .hero > .wrap{padding-top:148px}
+  .hero h1{font-size:clamp(1.75rem,8.5vw,2.25rem);letter-spacing:.05em}
+  .others{grid-template-columns:minmax(0,1fr)}
+}
 """
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Gaegu:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap">'
@@ -226,7 +204,8 @@ def head(title, desc, img, path, graph):
 def header():
     return '''<header class="top"><div class="wrap">
   <a class="home" href="../"><img src="../img/wc-logo-amber.png" alt="Wildly Calm home" width="519" height="163"></a>
-  <nav aria-label="Site"><a href="../#proof">All retreats</a><a href="../#how">How it works</a><a href="../blog/">Blog</a><a class="btn" href="../#register">Tickets</a></nav>
+  <nav aria-label="Site"><a href="../#proof">All retreats</a><a href="../#how">How it works</a><a href="../blog/">Blog</a></nav>
+  <a class="btn" href="../#register">Tickets</a>
 </div></header>'''
 
 def nextup():
@@ -319,11 +298,11 @@ def barrington():
       <div><b>Is this therapy?</b><p>No. It's peers, not counsellors. If you need more support, we'll help you find it.</p></div>
     </div>
   </div>
-  ''' + (f'<aside class="did"><h3>Tickets</h3><p style="font-size:.98rem">Tickets are on sale now on Humanitix.</p><a class="btn" href="{e(tickets)}" rel="noopener" style="justify-self:start">Get tickets</a></aside>' if tickets else
-         '<aside class="did"><h3>Tickets</h3><p style="font-size:.98rem">Tickets and the price are on the way. Head to the booking section for the latest.</p><a class="btn" href="../#register" style="justify-self:start">Book or register</a></aside>') + '''
+  ''' + (f'<aside class="did"><h3>Tickets</h3><p>Tickets are on sale now on Humanitix.</p><a class="btn" href="{e(tickets)}" rel="noopener" style="justify-self:start">Get tickets</a></aside>' if tickets else
+         '<aside class="did"><h3>Tickets</h3><p>Tickets and the price are on the way. Head to the booking section for the latest.</p><a class="btn" href="../#register" style="justify-self:start">Book or register</a></aside>') + '''
 </div></section>''')
     cards = ''.join(f'<a class="other" href="{o["slug"]}.html"><div class="print"><figure class="{torn(i)}"><img src="../img/{o["photos"][0][0]}" alt="" loading="lazy"></figure></div><b>{e(o["name"])}</b><span>{e(o["when"])}</span></a>' for i, o in enumerate(RETREATS[:3]))
-    out.append(f'''<section class="gallery"><div class="wrap"><p class="eyebrow">Before this one</p><h2>Past retreats</h2><div class="others">{cards}</div><p style="margin-top:18px"><a href="the-snowies.html">And the Snowies, September 2026</a></p></div></section>''')
+    out.append(f'''<section class="gallery"><div class="wrap"><p class="eyebrow">Before this one</p><h2>Past retreats</h2><div class="others">{cards}</div><p class="more-link" style="margin-top:18px"><a href="the-snowies.html">And the Snowies, September 2026</a></p></div></section>''')
     out.append(footer())
     return '\n'.join(out)
 
