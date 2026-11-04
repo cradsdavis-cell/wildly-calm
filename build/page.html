@@ -72,13 +72,14 @@
 /* how it works: the itinerary post */
 .itin{min-height:clamp(600px,86vh,820px);display:grid;align-items:center}
 .itin > .bg{object-position:50% 60%}
-.itin::before{background:linear-gradient(90deg,rgba(16,16,12,.8) 0%,rgba(16,16,12,.56) 58%,rgba(16,16,12,.24) 100%)}
+.itin::before{background:linear-gradient(90deg,rgba(16,16,12,.84) 0%,rgba(16,16,12,.78) 46%,rgba(16,16,12,.42) 72%,rgba(16,16,12,.2) 100%)}
 .itin > .wrap{width:100%;display:grid;gap:var(--s-5);padding-block:clamp(64px,8vw,96px)}
 .itin .mark{position:absolute;top:28px;right:var(--gutter);width:120px}
 .itin h2{color:var(--cream);max-width:20ch}
 .steps{list-style:none;margin:var(--s-2) 0 0;padding:0;display:grid;gap:var(--s-4);max-width:620px}
 .steps li{display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s-5);align-items:center}
-.steps .print figure{padding:5px}
+/* step thumbnails are too small for a tear: a plain white mat */
+.steps .print figure{padding:5px;clip-path:none}
 .steps .n{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);color:var(--amber);display:block;line-height:1}
 .steps b{font-weight:600;letter-spacing:.04em}
 .steps .d{display:block;opacity:.9}
@@ -115,7 +116,8 @@
 .p-head .logo{width:min(230px,70vw)}
 .p-head h2{font-weight:400;letter-spacing:.14em;margin-top:var(--s-5)}
 .p-list{display:grid;gap:var(--s-6)}
-.p-list b{display:block;font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1.1;color:var(--amber);margin-bottom:var(--s-1)}
+.p-list b{display:block;font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1.1;color:var(--cream);margin-bottom:var(--s-1)}
+.p-list b::before{content:"~ ";color:var(--amber)}
 .p-list p{max-width:56ch;opacity:.92}
 
 /* who we are */
@@ -136,16 +138,27 @@
 .peers .wrap:not(.reels) > div > p{max-width:var(--measure)}
 .founders small{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1;letter-spacing:0;text-transform:none;color:var(--olive-text);margin-left:6px}
 
-/* next retreat */
-.next > .bg{object-position:50% 92%}
-.next::before{background:linear-gradient(100deg,rgba(16,16,12,.84) 0%,rgba(16,16,12,.6) 52%,rgba(16,16,12,.3) 100%)}
-.next > .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:start;padding-block:var(--section)}
+/* next retreat: the paddlers in a photo strip, then the details on olive with an outlined ticket card */
+.next{padding-block:0;background:var(--olive)}
+.next > .bg{position:relative;display:block;height:auto;aspect-ratio:21/8;object-position:50% 86%}
+.next::before{display:none}
+.next > .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:start;padding-block:var(--s-8) var(--section)}
 .next .sym{width:84px;margin-bottom:var(--s-3)}
 .next h2{color:var(--amber)}
-.next .on-photo{display:grid;gap:0;margin-top:var(--s-3)}
+.next .on-photo{display:grid;gap:0;margin-top:var(--s-3);text-shadow:none;color:var(--cream)}
+/* two columns at 901px and up: the heading and facts on the left, the ticket card and the FAQ on the right,
+   placed by the grid so the reading order stays the same */
+@media (min-width:901px){
+  .next > .wrap{row-gap:0}
+  .next > .wrap > div:first-child{display:contents}
+  .next > .wrap > div:first-child > *{grid-column:1}
+  .next > .wrap > #register{grid-column:2;grid-row:1 / span 3;align-self:start}
+  .next > .wrap > div:first-child > .faq{grid-column:2;grid-row:4;margin-top:var(--s-6)}
+  .next > .wrap > div:first-child > .details{grid-row:4;align-self:start}
+}
 .faq p{opacity:.9}
 
-.form{background:var(--olive);color:var(--cream);padding:clamp(24px,3vw,32px);display:grid;gap:var(--s-3)}
+.form{background:var(--olive);color:var(--cream);box-shadow:inset 0 0 0 1.5px rgba(241,238,230,.45);padding:clamp(24px,3vw,32px);display:grid;gap:var(--s-3)}
 .form h3{font-weight:600;font-size:var(--fs-small);letter-spacing:.16em;text-transform:uppercase}
 .form .hint{font-size:var(--fs-small);opacity:.92}
 .form .btn{justify-self:start}
@@ -166,6 +179,15 @@ footer{display:grid;gap:var(--s-5);padding-bottom:calc(var(--s-8) + 72px)}
 .help{max-width:52ch;display:grid;gap:var(--s-1)}
 
 @media (max-width:900px){
+  /* the hero photo stands on its own, cropped to the circle, and the words follow on olive */
+  .hero{min-height:0;display:block;background:var(--olive)}
+  .hero > .bg{position:relative;inset:auto;height:auto;aspect-ratio:4/3;object-position:26% 66%}
+  .hero::before{bottom:auto;height:200px;background:linear-gradient(180deg,rgba(18,18,14,.7) 0%,rgba(18,18,14,0) 100%)}
+  .hero > .wrap{padding-block:var(--s-5) var(--s-6);gap:var(--s-3)}
+  .hero .on-photo{text-shadow:none;color:var(--cream)}
+  .lockup .word{width:170px}
+  .lockup .sym{width:48px;margin-left:36px}
+  .next > .bg{aspect-ratio:3/2}
   .problem .wrap,.proof .head,.principles .wrap,.peers .wrap:not(.reels),.next > .wrap{grid-template-columns:minmax(0,1fr)}
   .memories{grid-template-columns:repeat(2,minmax(0,1fr))}
   .notes{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -173,6 +195,8 @@ footer{display:grid;gap:var(--s-5);padding-bottom:calc(var(--s-8) + 72px)}
 }
 @media (max-width:560px){
   .steps li{grid-template-columns:88px minmax(0,1fr);gap:var(--s-4)}
+  .itin::before{background:rgba(16,16,12,.64)}
+  .itin > .bg{object-position:88% 60%}
   .notes{grid-template-columns:minmax(0,1fr)}
   .note.lead{grid-column:auto}
   .float{left:0;right:0;bottom:0;width:100%}
@@ -404,7 +428,7 @@ document.querySelectorAll('.reel').forEach(function(f){
 })();
 
 (function () {
-  // Step aside while the hero buttons or the tickets card are on screen.
+  // Step aside while the hero or the tickets card is on screen.
   var fl = document.getElementById('float');
   if (!('IntersectionObserver' in window)) return;
   var seen = new Set();
@@ -412,7 +436,7 @@ document.querySelectorAll('.reel').forEach(function(f){
     es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
     fl.classList.toggle('away', seen.size > 0);
   }, { threshold: 0.25 });
-  io.observe(document.querySelector('.hero-ctas')); io.observe(document.getElementById('register'));
+  io.observe(document.getElementById('top')); io.observe(document.getElementById('register'));
 })();
 </script>
 </body>
