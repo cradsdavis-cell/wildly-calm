@@ -171,7 +171,7 @@ footer img{width:132px}
 
 .hero{position:relative;color:var(--cream);isolation:isolate;background:var(--ink);min-height:clamp(480px,72vh,720px);display:grid;align-items:end}
 .hero > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);z-index:-2}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,18,14,.5) 0%,rgba(18,18,14,.15) 35%,rgba(18,18,14,.75) 100%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,18,14,.64) 0%,rgba(18,18,14,.28) 20%,rgba(18,18,14,.15) 35%,rgba(18,18,14,.75) 100%)}
 .on-photo .seg{white-space:nowrap}
 .top nav{margin-left:auto}
 .hero > .wrap{width:100%;display:grid;gap:var(--s-3);padding-block:128px clamp(32px,5vw,56px)}
@@ -189,7 +189,7 @@ footer img{width:132px}
 .quote .card{padding:clamp(24px,3vw,36px)}
 .quote .card blockquote{font-size:var(--fs-lead)}
 
-.gallery{background:var(--sand-deep)}
+.gallery{background-color:var(--sand-deep);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.6 0 0 0 -.5 1.6 0 0 0 -.5 1.6 0 0 0 -.5 0 0 0 0 .4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-blend-mode:soft-light}
 .gal{--gap:clamp(16px,2.4vw,28px);display:flex;flex-wrap:wrap;column-gap:var(--gap);margin-top:clamp(24px,3vw,36px)}
 /* --a is the print's aspect ratio x10 (grow factors under 1 would leave a lone print short of the row) */
 .gal .print{flex:var(--a) 1 16px;min-width:0;margin:0 0 var(--gap);transform:rotate(.5deg)}
@@ -229,7 +229,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-5)}
 @media (max-width:900px){
   .hero{min-height:0;display:block;background:var(--olive)}
   .hero > .bg{position:relative;inset:auto;height:auto;aspect-ratio:4/3;object-position:var(--pos-m,var(--pos,50% 50%))}
-  .hero::before{bottom:auto;height:200px;background:linear-gradient(180deg,rgba(18,18,14,.7) 0%,rgba(18,18,14,0) 100%)}
+  .hero::before{bottom:auto;height:170px;background:linear-gradient(180deg,rgba(18,18,14,.78) 0%,rgba(18,18,14,.45) 55%,rgba(18,18,14,0) 100%)}
   .hero > .wrap{padding-block:var(--s-6) var(--s-7)}
   .nextup > .bg{aspect-ratio:3/2}
   .hero .on-photo{text-shadow:none;color:var(--cream)}

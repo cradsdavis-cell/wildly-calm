@@ -253,7 +253,7 @@ footer img{width:132px}
 /* hero: logo, the problem, and the next retreat at a glance */
 .hero{min-height:clamp(640px,94vh,900px);display:grid;align-items:end}
 .hero > .bg{object-position:50% 85%}
-.hero::before{background:linear-gradient(180deg,rgba(18,18,14,.5) 0%,rgba(18,18,14,.25) 30%,rgba(18,18,14,.5) 60%,rgba(18,18,14,.85) 100%)}
+.hero::before{background:linear-gradient(180deg,rgba(18,18,14,.62) 0%,rgba(18,18,14,.3) 16%,rgba(18,18,14,.25) 30%,rgba(18,18,14,.5) 60%,rgba(18,18,14,.85) 100%)}
 .hero > .wrap{width:100%;display:grid;gap:var(--s-4);padding-block:clamp(96px,10vw,120px) clamp(32px,4vw,48px)}
 .lockup{display:grid;justify-items:start}
 .lockup .sym{width:clamp(58px,6.4vw,84px);margin-left:clamp(44px,6vw,86px);margin-bottom:var(--s-1)}
@@ -328,7 +328,7 @@ footer img{width:132px}
 .p-head{display:grid;gap:var(--s-1);justify-items:start}
 .p-head .sym{width:76px;margin-left:56px;margin-bottom:6px}
 .p-head .logo{width:min(230px,70vw)}
-.p-head h2{font-weight:400;letter-spacing:.14em;margin-top:var(--s-5)}
+.p-head h2{margin-top:var(--s-5)}
 .p-list{display:grid;gap:var(--s-6)}
 .p-list b{display:block;font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1.1;color:var(--cream);margin-bottom:var(--s-1)}
 .p-list b::before{content:"~ ";color:var(--amber)}
@@ -338,7 +338,16 @@ footer img{width:132px}
 .peers .wrap.reels{display:block;margin-top:clamp(32px,5vw,56px)}
 .reel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,32px)}
 .reel{margin:0}
+.reel .frame{position:relative}
 .reel video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--ink)}
+/* one play mark in the brand's colours; the browser's own controls appear only once a reel plays */
+.reel .play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border:0;border-radius:50%;cursor:pointer;
+  background:var(--cream);box-shadow:0 8px 20px -6px rgba(0,0,0,.45);transition:background-color .2s,transform .2s}
+.reel .play::before{content:"";position:absolute;left:26px;top:20px;border-style:solid;border-width:12px 0 12px 19px;border-color:transparent transparent transparent var(--olive)}
+.reel .play:hover{background:var(--amber);transform:scale(1.04)}
+.reel .play:active{transform:scale(.98)}
+.reel .play:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+.reel .frame.playing .play{display:none}
 .reel figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-2);margin-top:var(--s-3)}
 .reel figcaption b{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:var(--fs-small)}
 .sides{display:flex;gap:0}
@@ -388,6 +397,7 @@ footer img{width:132px}
 .float-bar .t span{font-family:var(--hand);font-weight:700;color:var(--amber);font-size:var(--fs-hand);line-height:1.1;white-space:nowrap}
 
 footer{display:grid;gap:var(--s-5);padding-bottom:calc(var(--s-8) + 72px)}
+@media (min-width:561px){footer{padding-bottom:var(--s-8)}}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-5);align-items:start}
 .foot img{width:140px}
 .help{max-width:52ch;display:grid;gap:var(--s-1)}
@@ -396,7 +406,7 @@ footer{display:grid;gap:var(--s-5);padding-bottom:calc(var(--s-8) + 72px)}
   /* the hero photo stands on its own, cropped to the circle, and the words follow on olive */
   .hero{min-height:0;display:block;background:var(--olive)}
   .hero > .bg{position:relative;inset:auto;height:auto;aspect-ratio:4/3;object-position:26% 66%}
-  .hero::before{bottom:auto;height:200px;background:linear-gradient(180deg,rgba(18,18,14,.7) 0%,rgba(18,18,14,0) 100%)}
+  .hero::before{bottom:auto;height:170px;background:linear-gradient(180deg,rgba(18,18,14,.78) 0%,rgba(18,18,14,.45) 55%,rgba(18,18,14,0) 100%)}
   .hero > .wrap{padding-block:var(--s-5) var(--s-6);gap:var(--s-3)}
   .hero .on-photo{text-shadow:none;color:var(--cream)}
   .lockup .word{width:170px}
@@ -552,20 +562,21 @@ footer{display:grid;gap:var(--s-5);padding-bottom:calc(var(--s-8) + 72px)}
   <div class="wrap reels">
     <p class="eyebrow">Meet us</p>
     <div class="reel-grid">
-      <figure class="reel" data-who="lockie"><video controls playsinline preload="none" poster="video/lockie-calm.jpg" src="video/lockie-calm.mp4" aria-label="Lockie, the calm side"></video><figcaption><b>Lockie</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
-      <figure class="reel" data-who="kieran"><video controls playsinline preload="none" poster="video/kieran-calm.jpg" src="video/kieran-calm.mp4" aria-label="Kieran, the calm side"></video><figcaption><b>Kieran</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
-      <figure class="reel" data-who="sam"><video controls playsinline preload="none" poster="video/sam-calm.jpg" src="video/sam-calm.mp4" aria-label="Sam, the calm side"></video><figcaption><b>Sam</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+      <figure class="reel" data-who="lockie"><div class="frame"><video id="reel-lockie" playsinline preload="none" poster="video/lockie-calm.jpg" src="video/lockie-calm.mp4" aria-label="Lockie, the calm side"></video><button type="button" class="play" aria-labelledby="reel-lockie"></button></div><figcaption><b>Lockie</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+      <figure class="reel" data-who="kieran"><div class="frame"><video id="reel-kieran" playsinline preload="none" poster="video/kieran-calm.jpg" src="video/kieran-calm.mp4" aria-label="Kieran, the calm side"></video><button type="button" class="play" aria-labelledby="reel-kieran"></button></div><figcaption><b>Kieran</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+      <figure class="reel" data-who="sam"><div class="frame"><video id="reel-sam" playsinline preload="none" poster="video/sam-calm.jpg" src="video/sam-calm.mp4" aria-label="Sam, the calm side"></video><button type="button" class="play" aria-labelledby="reel-sam"></button></div><figcaption><b>Sam</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
     </div>
   </div>
 </section>
 <script>
 document.querySelectorAll('.reel').forEach(function(f){
-  var v=f.querySelector('video'),who=f.dataset.who,name=f.querySelector('b').textContent;
+  var v=f.querySelector('video'),fr=f.querySelector('.frame'),who=f.dataset.who,name=f.querySelector('b').textContent;
+  f.querySelector('.play').addEventListener('click',function(){v.controls=true;fr.classList.add('playing');v.play();});
   f.querySelectorAll('.sides button').forEach(function(b){
     b.addEventListener('click',function(){
       var s=b.dataset.side;
       f.querySelectorAll('.sides button').forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
-      v.pause();v.poster='video/'+who+'-'+s+'.jpg';v.src='video/'+who+'-'+s+'.mp4';
+      v.pause();v.controls=false;fr.classList.remove('playing');v.poster='video/'+who+'-'+s+'.jpg';v.src='video/'+who+'-'+s+'.mp4';
       v.setAttribute('aria-label',name+', the '+s+' side');
     });
   });
