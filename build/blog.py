@@ -82,8 +82,9 @@ BLOG_CSS = """
 .post-card .print{transition:transform .3s}
 .post-card:hover .print{transform:translateY(-4px)}
 .byline{font-family:var(--type);font-size:var(--fs-small);opacity:.9}
-.article .wrap{max-width:760px}
-.article .prose{max-width:none}
+/* one left edge: the reading column starts on the same line as the hero title and the section headings */
+.article .wrap > *{max-width:720px}
+.article .prose{max-width:720px}
 .poem{margin:clamp(32px,5vw,48px) 0 0;filter:drop-shadow(0 16px 24px rgba(0,0,0,.25))}
 .poem .card{gap:18px;padding:clamp(28px,5vw,52px)}
 .poem h2{font-family:var(--hand);font-weight:700;text-transform:none;letter-spacing:0;font-size:clamp(1.9rem,4vw,2.5rem);color:var(--rust)}
