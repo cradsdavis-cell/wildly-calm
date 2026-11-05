@@ -1,0 +1,120 @@
+/* Shared base for every page (home, retreats, blog): tokens, type scale, buttons, nav,
+   prints, cards, fact list, footer. Inlined by the build; page CSS follows it.
+   The system it implements lives in DESIGN notes: one type scale, one spacing scale,
+   colour by role (rust on sand only at large sizes, amber on olive only at large sizes). */
+:root{
+  --sand:#D7D2C6;
+  --sand-deep:#CCC6B8;
+  --paper:#FBFAF6;
+  --ink:#1F1E1B;
+  --olive:#5E604A;
+  --olive-text:#55573F;
+  --amber:#F7AD19;
+  --cream:#F1EEE6;
+  --rust:#A65E39;
+  --sans:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Gaegu","Bradley Hand","Comic Sans MS",cursive;
+  --type:"Courier Prime","Courier New",ui-monospace,monospace;
+  /* type scale: eleven roles, nothing under 12px */
+  --fs-display:clamp(2.25rem,5vw,3.75rem);
+  --fs-h1-home:clamp(1.75rem,3.8vw,2.875rem);
+  --fs-h2:clamp(1.5rem,3vw,2.25rem);
+  --fs-h3:clamp(1.125rem,2vw,1.375rem);
+  --fs-lead:clamp(1.0625rem,1.4vw,1.1875rem);
+  --fs-body:1.0625rem;
+  --fs-small:.875rem;
+  --fs-label:.75rem;
+  --fs-type:.875rem;
+  --fs-hand:clamp(1.25rem,1rem + .6vw,1.5rem);
+  --fs-hand-lg:clamp(1.625rem,2.6vw,2.25rem);
+  --fs-hand-sm:1.125rem;
+  /* spacing: 4px base */
+  --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;--s-10:128px;
+  --section:clamp(64px,8vw,112px);
+  --measure:62ch;
+  --gutter:clamp(20px,4vw,40px);
+  --print-shadow:drop-shadow(0 10px 14px rgba(31,30,27,.32));
+  --focus:var(--ink);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+body{margin:0;position:relative;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:var(--fs-body);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:var(--sans);text-wrap:balance}
+p,li,dd,blockquote,figcaption{text-wrap:pretty}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.photo,.hero,.nextup,.principles,.did,.float-bar,.next{--focus:var(--amber)}
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:var(--section)}
+h2{font-weight:600;font-size:var(--fs-h2);line-height:1.15;letter-spacing:.07em;text-transform:uppercase}
+.eyebrow{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1;color:var(--rust);margin-bottom:var(--s-3)}
+.small{font-size:var(--fs-small);color:var(--olive-text)}
+.on-photo{font-family:var(--hand);font-weight:700;color:var(--amber);font-size:var(--fs-hand);line-height:1.3;text-shadow:0 1px 10px rgba(0,0,0,.35)}
+
+/* film grain on the sand ground only: it sits under every section, so photos, olive panels and
+   paper keep their own colour. Grey noise in soft-light, offset so its mean is neutral: measured
+   sand stays #D7D2C6. Absolute, so full-page renders get it too. */
+body::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.4;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.6 0 0 0 -.5 1.6 0 0 0 -.5 1.6 0 0 0 -.5 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* buttons: amber on photos, ink and olive; rust on sand; outline variants for the second action */
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;text-decoration:none;
+  font:600 var(--fs-label)/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;background:var(--amber);color:var(--ink);
+  transition:background-color .2s,color .2s,box-shadow .2s,filter .2s,transform .1s}
+/* a filled button keeps its own colour: a shade darker on hover, darker again and pushed down when pressed */
+.btn:hover{filter:brightness(.9)}
+.btn:active{filter:brightness(.8);transform:translateY(1px);box-shadow:inset 0 2px 0 rgba(31,30,27,.3)}
+.btn.ghost{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1.5px var(--cream)}
+.btn.ghost:hover{background:var(--cream);color:var(--ink);filter:none}
+.btn.ghost:active{background:var(--sand);color:var(--ink);filter:none;box-shadow:none}
+.btn.sand{background:var(--rust);color:var(--paper)}
+
+.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.line:hover{background:var(--olive);color:var(--cream);box-shadow:inset 0 0 0 1.5px var(--olive);filter:none}
+.btn.line:active{background:var(--ink);color:var(--paper);box-shadow:none;filter:none}
+.btns{display:flex;flex-wrap:wrap;gap:var(--s-3)}
+
+/* header nav: label type, cream on photo, amber rule on hover and focus */
+.top{position:absolute;inset:0 0 auto 0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);padding-block:var(--s-4)}
+.top .home{display:block;padding-block:var(--s-1)}
+.top .home img{width:118px}
+.top nav{display:flex;align-items:center;gap:clamp(18px,2.6vw,32px);font-weight:600;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase}
+.top nav a:not(.btn){display:inline-flex;align-items:center;min-height:44px;color:var(--cream);text-decoration:none;box-shadow:inset 0 -2px 0 transparent;transition:box-shadow .2s;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.top nav a:not(.btn):hover{box-shadow:inset 0 -2px 0 var(--amber)}
+.top nav a:not(.btn):active{color:var(--amber)}
+.top .btn{min-height:44px;padding:0 16px}
+
+/* prints: white border, torn edge, typewriter caption */
+.print{filter:var(--print-shadow);margin:0;min-width:0}
+.print figure{background:var(--paper);padding:8px;margin:0}
+.print img{width:100%}
+.print figcaption{font-family:var(--type);font-size:var(--fs-type);line-height:1.3;padding:8px 2px 2px;color:var(--ink)}
+
+/* paper cards: quotes and the poem */
+.card{background:var(--paper);display:grid;gap:var(--s-3)}
+.card blockquote{margin:0;font-family:var(--type);line-height:1.55}
+.card cite{font-style:normal;font-family:var(--hand);font-weight:400;font-size:var(--fs-hand-sm);line-height:1.2;color:var(--rust)}
+
+/* fact list: When / Where / What / Who */
+.details{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 var(--s-5);margin:var(--s-5) 0 0}
+.details dt,.details dd{padding-block:10px;border-top:1px solid color-mix(in srgb,currentColor 24%,transparent)}
+.details dt{font-weight:600;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;opacity:.8;padding-top:14px}
+.details dd{margin:0}
+.faq{margin-top:var(--s-6);display:grid;gap:var(--s-4);max-width:52ch}
+.faq b{display:block;font-weight:600}
+
+/* footer */
+footer{padding-block:var(--s-7) var(--s-8);font-size:var(--fs-small)}
+footer img{width:132px}
+
+@media (max-width:560px){
+  .top .wrap{padding-block:var(--s-2)}
+  .top nav{flex-wrap:wrap;column-gap:var(--s-5);row-gap:0}
+  .top nav a:not(.btn){white-space:nowrap}
+}

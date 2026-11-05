@@ -1,6 +1,6 @@
 import re,sys,os
 here=os.path.dirname(os.path.abspath(__file__)); root=os.path.dirname(here)
-s=open(f'{here}/page.html').read().replace('/*TORN*/',open(f'{here}/torn.css').read())
+s=open(f'{here}/page.html').read().replace('/*BASE*/',open(f'{here}/base.css').read()).replace('/*TORN*/',open(f'{here}/torn.css').read())
 import json
 cfg=json.load(open(f'{here}/config.json'))
 t=cfg.get('tickets_url','').strip()

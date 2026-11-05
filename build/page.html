@@ -26,234 +26,200 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Gaegu:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
 <style>
-/* Layout: the Instagram grid as a page, told in order: problem, how, proof, book.
+/*BASE*/
+/* Home: the Instagram grid as a page, told in order: problem, how, proof, book.
    Full-bleed film photos carry the amber logo and handwritten lines; sand bands hold the
    words; olive holds the principles; memories sit as torn white prints with typewriter
-   captions. A floating register-interest card follows the reader. */
-:root{
-  --sand:#D7D2C6;
-  --sand-deep:#CCC6B8;
-  --paper:#FBFAF6;
-  --ink:#1F1E1B;
-  --olive:#5E604A;
-  --olive-text:#55573F;
-  --amber:#F7AD19;
-  --cream:#F1EEE6;
-  --rust:#A65E39;
-  --sans:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --hand:"Gaegu","Bradley Hand","Comic Sans MS",cursive;
-  --type:"Courier Prime","Courier New",ui-monospace,monospace;
-  --measure:60ch;
-  --gutter:clamp(16px,4vw,40px);
-  color-scheme:light;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-html,body{overflow-x:clip}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased}
-img{max-width:100%;height:auto;display:block}
-a{color:inherit}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-p{margin:0}
-h1,h2,h3{margin:0;font-family:var(--sans);text-wrap:balance}
-.wrap{max-width:1140px;margin-inline:auto;padding-inline:var(--gutter)}
-section{padding-block:clamp(64px,9vw,112px)}
-h2{font-weight:600;font-size:clamp(1.55rem,3.2vw,2.35rem);line-height:1.15;letter-spacing:.07em;text-transform:uppercase}
-.eyebrow{font-family:var(--hand);font-size:1.5rem;line-height:1;color:var(--rust);margin-bottom:12px}
-.small{font-size:.8rem;color:var(--olive-text)}
-
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.14;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+   captions. A floating tickets bar follows the reader. */
 
 /* full-bleed photo panels */
 .photo{position:relative;color:var(--cream);isolation:isolate;background:var(--ink)}
 .photo > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .photo::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(18,18,14,.68) 0%,rgba(18,18,14,.34) 52%,rgba(18,18,14,.1) 100%)}
-.on-photo{font-family:var(--hand);color:var(--amber);font-size:clamp(1.25rem,2vw,1.5rem);line-height:1.3;text-shadow:0 1px 10px rgba(0,0,0,.35)}
 
 /* header: menu only, the logo lives in the hero */
-.top{position:absolute;inset:0 0 auto 0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
-.top .wrap{display:flex;justify-content:flex-end;padding-block:22px}
-.top nav{display:flex;gap:clamp(14px,3vw,30px);flex-wrap:wrap;font-weight:600;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
-.top nav a{text-decoration:none;color:var(--cream);padding-block:4px;border-bottom:1px solid transparent}
-.top nav a:hover{border-color:var(--amber)}
+.top .wrap{justify-content:flex-end}
 
 /* hero: logo, the problem, and the next retreat at a glance */
 .hero{min-height:clamp(640px,94vh,900px);display:grid;align-items:end}
 .hero > .bg{object-position:50% 85%}
-.hero::before{background:linear-gradient(180deg,rgba(18,18,14,.5) 0%,rgba(18,18,14,.25) 30%,rgba(18,18,14,.5) 60%,rgba(18,18,14,.85) 100%)}
-.hero > .wrap{width:100%;display:grid;gap:16px;padding-block:clamp(84px,10vw,110px) clamp(28px,4vw,44px)}
+.hero::before{background:linear-gradient(180deg,rgba(18,18,14,.62) 0%,rgba(18,18,14,.3) 16%,rgba(18,18,14,.25) 30%,rgba(18,18,14,.5) 60%,rgba(18,18,14,.85) 100%)}
+.hero > .wrap{width:100%;display:grid;gap:var(--s-4);padding-block:clamp(96px,10vw,120px) clamp(32px,4vw,48px)}
 .lockup{display:grid;justify-items:start}
-.lockup .sym{width:clamp(58px,6.4vw,84px);margin-left:clamp(44px,6vw,86px);margin-bottom:4px}
+.lockup .sym{width:clamp(58px,6.4vw,84px);margin-left:clamp(44px,6vw,86px);margin-bottom:var(--s-1)}
 .lockup .word{width:clamp(220px,28vw,360px);margin-top:-2px}
-.hero h1{font-weight:500;font-size:clamp(1.7rem,3.8vw,2.9rem);line-height:1.12;letter-spacing:.08em;text-transform:uppercase;max-width:22ch;margin-top:12px}
+.hero h1{font-weight:500;font-size:var(--fs-h1-home);line-height:1.12;letter-spacing:.08em;text-transform:uppercase;max-width:22ch;margin-top:var(--s-3)}
 .hero h1 em{font-style:normal;color:var(--amber)}
-.hero .sub{max-width:54ch;font-size:clamp(1rem,1.4vw,1.15rem);opacity:.95}
-.hero-next{display:grid;gap:16px;margin-top:4px}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:10px}
-.btn.ghost{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1.5px var(--cream)}
-.btn.ghost:hover{background:var(--cream);color:var(--ink)}
-.facts{margin-top:8px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;background:rgba(241,238,230,.95);color:var(--ink);align-items:stretch}
-.fact{padding:13px 18px;display:grid;gap:2px;border-right:1px solid rgba(31,30,27,.14);min-width:0}
-.fact .k{font-weight:600;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--olive-text)}
-.fact .v{font-weight:600;font-size:.96rem;line-height:1.3}
-.facts .cta{display:grid;align-content:center;padding:12px 14px}
-.btn{appearance:none;border:0;cursor:pointer;display:inline-block;text-decoration:none;font:600 .74rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;padding:14px 18px;background:var(--amber);color:var(--ink)}
-.btn:hover{background:var(--ink);color:var(--amber)}
+.hero .sub{max-width:54ch;font-size:var(--fs-lead);opacity:.95}
+.hero-next{display:grid;gap:var(--s-4);margin-top:var(--s-1)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:var(--s-3)}
 
 /* problem, on sand with the guide's contour lines */
 .problem{position:relative;overflow:hidden}
 .topo{position:absolute;right:-12vw;top:-40px;width:min(720px,80vw);height:auto;aspect-ratio:1;z-index:0;pointer-events:none;opacity:.6}
-.problem .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,64px);align-items:center}
-.pains{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:18px}
-.pains li{display:grid;gap:4px;padding-left:18px;border-left:3px solid var(--olive)}
-.pains q{font-family:var(--hand);font-size:1.55rem;line-height:1.1;quotes:"\201C" "\201D"}
+.problem .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,64px);align-items:center}
+.pains{list-style:none;margin:var(--s-6) 0 0;padding:0;display:grid;gap:var(--s-5)}
+.pains li{display:grid;gap:var(--s-1);padding-left:var(--s-4);border-left:3px solid var(--olive)}
+.pains q{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand-lg);line-height:1.1;quotes:"\201C" "\201D"}
 .pains p{color:var(--olive-text);max-width:48ch}
-.answer{margin-top:28px;font-weight:600;font-size:1.15rem;max-width:44ch}
+.answer{margin-top:var(--s-6);font-weight:600;font-size:var(--fs-lead);max-width:44ch}
 .answer span{background:linear-gradient(transparent 60%,rgba(247,173,25,.45) 60%)}
 
 /* prints: white torn-edge photos with typewriter captions */
-.print{filter:drop-shadow(0 12px 16px rgba(0,0,0,.4));margin:0;min-width:0}
-.print figure{background:var(--paper);padding:8px;margin:0}
-.print img{width:100%;aspect-ratio:var(--ar,3/2);object-fit:cover}
-.print figcaption{font-family:var(--type);font-size:.78rem;line-height:1.25;padding:8px 2px 2px;color:var(--ink)}
+.print img{aspect-ratio:var(--ar,3/2);object-fit:cover}
 /*TORN*/
 
 /* how it works: the itinerary post */
 .itin{min-height:clamp(600px,86vh,820px);display:grid;align-items:center}
 .itin > .bg{object-position:50% 60%}
-.itin::before{background:linear-gradient(90deg,rgba(16,16,12,.8) 0%,rgba(16,16,12,.56) 58%,rgba(16,16,12,.24) 100%)}
-.itin > .wrap{width:100%;display:grid;gap:20px;padding-block:clamp(64px,8vw,96px)}
+.itin::before{background:linear-gradient(90deg,rgba(16,16,12,.84) 0%,rgba(16,16,12,.78) 46%,rgba(16,16,12,.42) 72%,rgba(16,16,12,.2) 100%)}
+.itin > .wrap{width:100%;display:grid;gap:var(--s-5);padding-block:clamp(64px,8vw,96px)}
 .itin .mark{position:absolute;top:28px;right:var(--gutter);width:120px}
 .itin h2{color:var(--cream);max-width:20ch}
-.itin .on-photo{font-size:1.5rem}
-.steps{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:16px;max-width:620px}
-.steps li{display:grid;grid-template-columns:104px minmax(0,1fr);gap:18px;align-items:center}
-.steps .print figure{padding:5px}
-.steps .n{font-family:var(--hand);font-size:1.3rem;color:var(--amber);display:block;line-height:1}
+.steps{list-style:none;margin:var(--s-2) 0 0;padding:0;display:grid;gap:var(--s-4);max-width:620px}
+.steps li{display:grid;grid-template-columns:104px minmax(0,1fr);gap:var(--s-5);align-items:center}
+/* step thumbnails are too small for a tear: a plain white mat */
+.steps .print figure{padding:5px;clip-path:none}
+.steps .n{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);color:var(--amber);display:block;line-height:1}
 .steps b{font-weight:600;letter-spacing:.04em}
-.steps .d{display:block;font-size:.95rem;opacity:.88}
+.steps .d{display:block;opacity:.9}
 
-/* proof: one memory board + a typed card */
-.proof .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:end}
-.board{position:relative;isolation:isolate;margin-top:clamp(28px,4vw,44px);padding:clamp(28px,4vw,48px) clamp(16px,3vw,40px)}
+/* proof: one memory board + quotes */
+.proof .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:end}
+.board{position:relative;isolation:isolate;margin-top:clamp(32px,4vw,48px);padding:clamp(32px,4vw,48px) clamp(16px,3vw,40px)}
 .board > .back{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
-.memories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2.4vw,28px);align-items:start}
-.mem{display:block;text-decoration:none;color:inherit;transition:transform .2s}
+.memories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.4vw,32px);align-items:start}
+.mem{display:block;text-decoration:none;color:inherit;transition:transform .3s}
 .memories .mem:nth-child(odd){transform:translateY(14px) rotate(-1.2deg)}
 .memories .mem:nth-child(even){transform:translateY(-6px) rotate(1deg)}
-.memories .mem:hover{transform:translateY(-10px) rotate(0deg)}
+.memories .mem:hover,.memories .mem:focus-visible{transform:translateY(-10px) rotate(0deg)}
 .memories figcaption i{display:block;font-style:normal;color:var(--rust);margin-top:2px}
 .memories figcaption b{display:block;font-weight:700}
-.testimonial{display:grid;justify-items:center;margin-top:clamp(48px,6vw,72px);filter:drop-shadow(0 18px 26px rgba(0,0,0,.28))}
 .voices{margin-top:clamp(48px,6vw,72px)}
-.voices h3{font-family:var(--hand);font-weight:400;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--rust);margin:0 0 clamp(18px,3vw,30px);line-height:1}
-.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,32px);align-items:start}
-.note{filter:drop-shadow(0 12px 18px rgba(0,0,0,.22));transition:transform .2s}
-.note .card{max-width:none;padding:clamp(20px,2.6vw,30px);gap:12px}
-.note .card blockquote{font-size:clamp(.95rem,1.4vw,1.06rem)}
-.note .card cite{font-size:1.15rem}
+.voices h3{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand-lg);color:var(--rust);margin:0 0 clamp(16px,3vw,32px);line-height:1}
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.6vw,32px);align-items:start}
+.note{filter:drop-shadow(0 12px 18px rgba(0,0,0,.22));transition:transform .3s}
+.note .card{padding:clamp(20px,2.6vw,32px)}
+.note .card blockquote{font-size:var(--fs-body)}
 .note.lead{grid-column:span 2}
-.note.lead .card blockquote{font-size:clamp(1.02rem,1.9vw,1.25rem)}
+.note.lead .card blockquote{font-size:var(--fs-lead)}
 .notes .note:nth-child(3n+1){transform:rotate(-1.4deg) translateY(6px)}
 .notes .note:nth-child(3n+2){transform:rotate(1.1deg) translateY(-4px)}
 .notes .note:nth-child(3n){transform:rotate(-.6deg) translateY(12px)}
 .notes .note:hover{transform:rotate(0) translateY(-4px)}
-.card{background:var(--paper);max-width:760px;padding:clamp(26px,4vw,44px);display:grid;gap:16px}
-.card blockquote{margin:0;font-family:var(--type);font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:1.55}
-.card cite{font-style:normal;font-family:var(--hand);font-size:1.3rem;color:var(--rust)}
 
 /* principles: the IG post, as a panel */
 .principles{background:var(--olive);color:var(--cream)}
 .principles .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,80px);align-items:start}
-.p-head{display:grid;gap:4px;justify-items:start}
+.p-head{display:grid;gap:var(--s-1);justify-items:start}
 .p-head .sym{width:76px;margin-left:56px;margin-bottom:6px}
 .p-head .logo{width:min(230px,70vw)}
-.p-head h2{font-weight:400;letter-spacing:.2em;font-size:clamp(1.45rem,2.5vw,1.95rem);line-height:1.3;margin-top:22px}
-.p-list{display:grid;gap:26px}
-.p-list b{display:block;font-weight:600;font-size:1.05rem;letter-spacing:.08em;margin-bottom:4px}
+.p-head h2{margin-top:var(--s-5)}
+.p-list{display:grid;gap:var(--s-6)}
+.p-list b{display:block;font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1.1;color:var(--cream);margin-bottom:var(--s-1)}
+.p-list b::before{content:"~ ";color:var(--amber)}
 .p-list p{max-width:56ch;opacity:.92}
 
+/* who we are */
 .peers .wrap.reels{display:block;margin-top:clamp(32px,5vw,56px)}
-.reel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.5vw,28px)}
+.reel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,32px)}
 .reel{margin:0}
+.reel .frame{position:relative}
 .reel video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--ink)}
-.reel figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
-.reel figcaption b{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.92rem}
-.sides{display:flex;gap:6px}
-.sides button{appearance:none;cursor:pointer;font:600 .68rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:8px 10px;border:1px solid var(--olive);background:transparent;color:var(--olive-text)}
+/* one play mark in the brand's colours; the browser's own controls appear only once a reel plays */
+.reel .play{position:absolute;right:14px;bottom:14px;width:56px;height:56px;border:0;border-radius:50%;cursor:pointer;
+  background:var(--cream);box-shadow:0 8px 20px -6px rgba(0,0,0,.45);transition:background-color .2s,transform .2s}
+.reel .play::before{content:"";position:absolute;left:22px;top:17px;border-style:solid;border-width:11px 0 11px 17px;border-color:transparent transparent transparent var(--olive)}
+.reel .play:hover{background:var(--amber);transform:scale(1.04)}
+.reel .play:active{transform:scale(.98)}
+.reel .play:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+.reel .frame.playing .play{display:none}
+.reel figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-2);margin-top:var(--s-3)}
+.reel figcaption b{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:var(--fs-small)}
+.sides{display:flex;gap:0}
+.sides button{appearance:none;cursor:pointer;font:600 var(--fs-label)/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;min-height:44px;padding:0 14px;border:1.5px solid var(--olive);background:transparent;color:var(--olive-text);transition:background-color .2s,color .2s}
+.sides button + button{margin-left:-1.5px}
+.sides button:hover{background:rgba(94,96,74,.14)}
 .sides button[aria-pressed="true"]{background:var(--olive);color:var(--cream)}
-.peers .wrap:not(.reels){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
-.founders{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:16px}
-.founders span{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.92rem}
-.founders small{font-family:var(--hand);font-size:1.05rem;letter-spacing:0;text-transform:none;color:var(--olive-text);margin-left:6px}
+.peers .wrap:not(.reels){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:start}
+.founders{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-5);margin-top:var(--s-4)}
+.founders span{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:var(--fs-small);white-space:nowrap}
+.peers .wrap:not(.reels) > div > p{max-width:var(--measure)}
+.founders small{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1;letter-spacing:0;text-transform:none;color:var(--olive-text);margin-left:6px}
 
-/* next retreat */
-.next > .bg{object-position:50% 92%}
-.next::before{background:linear-gradient(100deg,rgba(16,16,12,.84) 0%,rgba(16,16,12,.6) 52%,rgba(16,16,12,.3) 100%)}
-.next > .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start;padding-block:clamp(72px,9vw,110px)}
-.next .sym{width:84px;margin-bottom:10px}
+/* next retreat: the paddlers in a photo strip, then the details on olive with an outlined ticket card */
+.next{padding-block:0;background:var(--olive)}
+.next > .bg{position:relative;display:block;height:auto;aspect-ratio:21/8;object-position:50% 86%}
+.next::before{display:none}
+.next > .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:start;padding-block:var(--s-8) var(--section)}
+.next .sym{width:84px;margin-bottom:var(--s-3)}
 .next h2{color:var(--amber)}
-.next .on-photo{display:grid;gap:0;margin-top:10px}
-.details{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 20px;margin:22px 0 0}
-.details dt{font-weight:600;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;padding-top:4px}
-.details dd{margin:0}
-.faq{margin-top:24px;display:grid;gap:14px;max-width:52ch}
-.faq b{display:block;font-weight:600}
-.faq p{opacity:.9;font-size:.98rem}
+.next .on-photo{display:grid;gap:0;margin-top:var(--s-3);text-shadow:none;color:var(--cream)}
+/* two columns at 901px and up: the heading and facts on the left, the ticket card and the FAQ on the right,
+   placed by the grid so the reading order stays the same */
+@media (min-width:901px){
+  .next > .wrap{row-gap:0}
+  .next > .wrap > div:first-child{display:contents}
+  .next > .wrap > div:first-child > *{grid-column:1}
+  .next > .wrap > #register{grid-column:2;grid-row:1 / span 3;align-self:start}
+  .next > .wrap > div:first-child > .faq{grid-column:2;grid-row:4;margin-top:var(--s-6)}
+  .next > .wrap > div:first-child > .details{grid-row:4;align-self:start}
+}
+.faq p{opacity:.9}
 
-.form{background:var(--sand);color:var(--ink);padding:clamp(22px,3vw,30px);display:grid;gap:12px}
-.form h3{font-weight:600;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase}
-.form .hint{font-size:.9rem;color:var(--olive-text)}
-.field{display:grid;gap:4px}
-.field label{font-weight:600;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--olive-text)}
-.field input,.field textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid rgba(31,30,27,.25);padding:10px 12px;width:100%;border-radius:0}
-.field textarea{min-height:84px;resize:vertical}
-.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.form{background:var(--olive);color:var(--cream);box-shadow:inset 0 0 0 1.5px rgba(241,238,230,.45);padding:clamp(24px,3vw,32px);display:grid;gap:var(--s-3)}
+.form h3{font-weight:600;font-size:var(--fs-small);letter-spacing:.16em;text-transform:uppercase}
+.form .hint{font-size:var(--fs-small);opacity:.92}
 .form .btn{justify-self:start}
-.form .status{font-size:.9rem;min-height:1.3em}
-.form .status.ok{color:var(--olive-text);font-weight:600}
-.form .status.err{color:var(--rust);font-weight:600}
-.alt{font-size:.85rem;color:var(--olive-text)}
-.alt code{font-family:var(--type);user-select:all;word-break:break-all}
+.alt{font-size:var(--fs-small);opacity:.92}
+.alt code{font-family:var(--type);user-select:all;overflow-wrap:anywhere}
 
-/* floating register-interest card */
-.float{position:fixed;right:clamp(12px,2vw,24px);bottom:calc(clamp(12px,2vw,24px) + env(safe-area-inset-bottom,0px));z-index:30;width:min(390px,calc(100vw - 24px));transition:opacity .25s,transform .25s}
+/* floating tickets bar */
+.float{position:fixed;right:clamp(12px,2vw,24px);bottom:calc(clamp(12px,2vw,24px) + env(safe-area-inset-bottom,0px));z-index:30;width:min(390px,calc(100vw - 24px));transition:opacity .3s,transform .3s}
 .float.away{opacity:0;transform:translateY(16px);pointer-events:none}
-.float-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink);color:var(--cream);padding:10px 10px 10px 16px;box-shadow:0 14px 30px -12px rgba(0,0,0,.55)}
+.float-bar{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);background:var(--ink);color:var(--cream);padding:10px 10px 10px 16px;box-shadow:0 14px 30px -12px rgba(0,0,0,.55)}
 .float-bar .t{display:grid;line-height:1.25;min-width:0}
-.float-bar .t b{font-weight:600;font-size:.82rem;letter-spacing:.04em;white-space:nowrap}
-.float-bar .t span{font-family:var(--hand);color:var(--amber);font-size:1.1rem;white-space:nowrap}
-.float .panel{margin-bottom:8px;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);max-height:calc(100vh - 120px);overflow:auto}
-.float .x{appearance:none;border:0;background:none;font:600 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--olive-text);cursor:pointer;justify-self:end;padding:4px}
+.float-bar .t b{font-weight:600;font-size:var(--fs-small);letter-spacing:.04em;white-space:nowrap}
+.float-bar .t span{font-family:var(--hand);font-weight:700;color:var(--amber);font-size:var(--fs-hand);line-height:1.1;white-space:nowrap}
 
-footer{padding-block:44px 120px;display:grid;gap:22px;font-size:.9rem}
-.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:start}
+footer{display:grid;gap:var(--s-5);padding-bottom:calc(var(--s-8) + 72px)}
+@media (min-width:561px){footer{padding-bottom:var(--s-8)}}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-5);align-items:start}
 .foot img{width:140px}
-.help{max-width:52ch;display:grid;gap:4px}
+.help{max-width:52ch;display:grid;gap:var(--s-1)}
 
 @media (max-width:900px){
-  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fact:nth-child(2){border-right:0}
-  .fact{border-bottom:1px solid rgba(31,30,27,.14)}
-  .facts .cta{grid-column:1/-1}
-  .problem .wrap,.proof .head,.principles .wrap,.peers .wrap,.next > .wrap{grid-template-columns:minmax(0,1fr)}
+  /* the hero photo stands on its own, cropped to the circle, and the words follow on olive */
+  .hero{min-height:0;display:block;background:var(--olive)}
+  .hero > .bg{position:relative;inset:auto;height:auto;aspect-ratio:4/3;object-position:26% 66%}
+  .hero::before{bottom:auto;height:170px;background:linear-gradient(180deg,rgba(18,18,14,.78) 0%,rgba(18,18,14,.45) 55%,rgba(18,18,14,0) 100%)}
+  .hero > .wrap{padding-block:var(--s-5) var(--s-6);gap:var(--s-3)}
+  .hero .on-photo{text-shadow:none;color:var(--cream)}
+  .lockup .word{width:170px}
+  .lockup .sym{width:48px;margin-left:36px}
+  .next > .bg{aspect-ratio:3/2}
+  .problem .wrap,.proof .head,.principles .wrap,.peers .wrap:not(.reels),.next > .wrap{grid-template-columns:minmax(0,1fr)}
   .memories{grid-template-columns:repeat(2,minmax(0,1fr))}
   .notes{grid-template-columns:repeat(2,minmax(0,1fr))}
   .itin .mark{display:none}
 }
 @media (max-width:560px){
-  .top{display:none}
-  .steps li{grid-template-columns:88px minmax(0,1fr);gap:14px}
-  .row2{grid-template-columns:minmax(0,1fr)}
+  .steps li{grid-template-columns:88px minmax(0,1fr);gap:var(--s-4)}
+  .itin::before{background:rgba(16,16,12,.64)}
+  .itin > .bg{object-position:88% 60%}
   .notes{grid-template-columns:minmax(0,1fr)}
   .note.lead{grid-column:auto}
   .float{left:0;right:0;bottom:0;width:100%}
   .float-bar{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
-  .float .panel{margin:0 8px 8px}
-  .reel-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+  .reel-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--s-2)}
   .reel{scroll-snap-align:start}
+  /* the retreat board recomposes: one print per row, alternating sides, overlapping a little */
+  .memories{grid-template-columns:minmax(0,1fr);gap:0}
+  .memories .mem{width:82%}
+  .memories .mem + .mem{margin-top:-14px}
+  .memories .mem:nth-child(odd){justify-self:start;transform:rotate(-1.4deg)}
+  .memories .mem:nth-child(even){justify-self:end;transform:rotate(1.2deg)}
+  .memories .mem:hover,.memories .mem:focus-visible{transform:rotate(0)}
 }
 </style>
 </head>
@@ -382,20 +348,21 @@ footer{padding-block:44px 120px;display:grid;gap:22px;font-size:.9rem}
   <div class="wrap reels">
     <p class="eyebrow">Meet us</p>
     <div class="reel-grid">
-      <figure class="reel" data-who="lockie"><video controls playsinline preload="none" poster="video/lockie-calm.jpg" src="video/lockie-calm.mp4" aria-label="Lockie, the calm side"></video><figcaption><b>Lockie</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
-      <figure class="reel" data-who="kieran"><video controls playsinline preload="none" poster="video/kieran-calm.jpg" src="video/kieran-calm.mp4" aria-label="Kieran, the calm side"></video><figcaption><b>Kieran</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
-      <figure class="reel" data-who="sam"><video controls playsinline preload="none" poster="video/sam-calm.jpg" src="video/sam-calm.mp4" aria-label="Sam, the calm side"></video><figcaption><b>Sam</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+      <figure class="reel" data-who="lockie"><div class="frame"><video id="reel-lockie" playsinline preload="none" poster="video/lockie-calm.jpg" src="video/lockie-calm.mp4" aria-label="Lockie, the calm side"></video><button type="button" class="play" aria-labelledby="reel-lockie"></button></div><figcaption><b>Lockie</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+      <figure class="reel" data-who="kieran"><div class="frame"><video id="reel-kieran" playsinline preload="none" poster="video/kieran-calm.jpg" src="video/kieran-calm.mp4" aria-label="Kieran, the calm side"></video><button type="button" class="play" aria-labelledby="reel-kieran"></button></div><figcaption><b>Kieran</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
+      <figure class="reel" data-who="sam"><div class="frame"><video id="reel-sam" playsinline preload="none" poster="video/sam-calm.jpg" src="video/sam-calm.mp4" aria-label="Sam, the calm side"></video><button type="button" class="play" aria-labelledby="reel-sam"></button></div><figcaption><b>Sam</b><span class="sides"><button type="button" aria-pressed="true" data-side="calm">Calm side</button><button type="button" aria-pressed="false" data-side="wild">Wild side</button></span></figcaption></figure>
     </div>
   </div>
 </section>
 <script>
 document.querySelectorAll('.reel').forEach(function(f){
-  var v=f.querySelector('video'),who=f.dataset.who,name=f.querySelector('b').textContent;
+  var v=f.querySelector('video'),fr=f.querySelector('.frame'),who=f.dataset.who,name=f.querySelector('b').textContent;
+  f.querySelector('.play').addEventListener('click',function(){v.controls=true;fr.classList.add('playing');v.play();});
   f.querySelectorAll('.sides button').forEach(function(b){
     b.addEventListener('click',function(){
       var s=b.dataset.side;
       f.querySelectorAll('.sides button').forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
-      v.pause();v.poster='video/'+who+'-'+s+'.jpg';v.src='video/'+who+'-'+s+'.mp4';
+      v.pause();v.controls=false;fr.classList.remove('playing');v.poster='video/'+who+'-'+s+'.jpg';v.src='video/'+who+'-'+s+'.mp4';
       v.setAttribute('aria-label',name+', the '+s+' side');
     });
   });
@@ -425,7 +392,7 @@ document.querySelectorAll('.reel').forEach(function(f){
       <div class="form">
         <h3>{{CTA_TITLE}}</h3>
         <p class="hint">{{CTA_NOTE}}</p>
-        <a class="btn" href="{{CTA_URL}}" rel="noopener" style="justify-self:start">{{CTA_LABEL}}</a>
+        <a class="btn" href="{{CTA_URL}}" rel="noopener">{{CTA_LABEL}}</a>
         <p class="alt">Questions? Message <a href="https://www.instagram.com/wildlycalmretreats/" rel="noopener">@wildlycalmretreats</a> or email <code>wildlycalmretreats@gmail.com</code></p>
       </div>
     </div>
@@ -472,7 +439,7 @@ document.querySelectorAll('.reel').forEach(function(f){
 })();
 
 (function () {
-  // Step aside while the hero buttons or the tickets card are on screen.
+  // Step aside while the hero or the tickets card is on screen.
   var fl = document.getElementById('float');
   if (!('IntersectionObserver' in window)) return;
   var seen = new Set();
@@ -480,7 +447,7 @@ document.querySelectorAll('.reel').forEach(function(f){
     es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
     fl.classList.toggle('away', seen.size > 0);
   }, { threshold: 0.25 });
-  io.observe(document.querySelector('.hero-ctas')); io.observe(document.getElementById('register'));
+  io.observe(document.getElementById('top')); io.observe(document.getElementById('register'));
 })();
 </script>
 </body>

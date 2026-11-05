@@ -10,7 +10,7 @@ import os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from seo import SITE, ORG_ID, script
-from retreats import CSS, e, head, header, footer, torn
+from retreats import CSS, e, head, header, footer, torn, gallery
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -25,7 +25,7 @@ POSTS = [
         kind='A poem',
         seo_desc="Kieran Maguire, one of Wildly Calm's co-founders, on the conversation with his dad that let him go to Ireland, and the poem he wrote on the flight out.",
         standfirst="On a hard conversation with his dad, his first trip to Ireland as an adult, and the poem he wrote on the flight out.",
-        hero='kieran-carrauntoohil-hero.jpg', hero_1200='kieran-carrauntoohil-hero-1200.jpg', hero_pos='50% 55%',
+        hero='kieran-carrauntoohil-hero.jpg', hero_1200='kieran-carrauntoohil-hero-1200.jpg', hero_pos='50% 55%', hero_pos_m='50% 60%',
         hero_alt='Looking down from Carrauntoohil over green valleys to a lake',
         intro=[
             "I wrote this poem when I left Ireland this year after traveling there for the first time in my adult life, which was a really pivotal experience for me. My dad is Irish, and historically I’ve had a pretty difficult relationship with him. I used to hold a lot of resentment towards him, and there were many negative feelings that I held inside my heart, which gets very heavy as the years go by.",
@@ -58,7 +58,7 @@ POSTS = [
         kind='An essay',
         seo_desc='Men and women are being sold stories about each other. The first AI most of us lived with was built to sell them. What should the next one be built for?',
         standfirst='Men and women are being sold stories about each other. The first AI most of us lived with was built to sell them. What should the next one be built for?',
-        hero='ohr-campfire.jpg', hero_1200='ohr-campfire.jpg', hero_pos='50% 50%',
+        hero='ohr-campfire.jpg', hero_1200='ohr-campfire.jpg', hero_pos='50% 50%', hero_pos_m='70% 60%',
         hero_alt='A figure in a hooded jacket sitting alone on a log beside a campfire at night, sparks rising, a tent behind',
         card=('ohr-fire.jpg', 1600, 1067),
         # The essay body is HTML copied from the published page; see the note at the top of the file.
@@ -68,7 +68,7 @@ POSTS = [
     ),
 ]
 
-INDEX_HERO = ('kieran-carrauntoohil-hero.jpg', 'kieran-carrauntoohil-hero-1200.jpg', '50% 55%')
+INDEX_HERO = ('kieran-carrauntoohil-hero.jpg', 'kieran-carrauntoohil-hero-1200.jpg', '50% 55%;--pos-m:50% 60%')
 
 BLOG_CSS = """
 .posts{display:grid;gap:clamp(28px,4vw,44px);margin-top:clamp(24px,3vw,36px)}
@@ -76,34 +76,35 @@ BLOG_CSS = """
 .post-card .print{margin:0}
 .post-card h2{margin:6px 0 10px}
 .post-card:hover h2{color:var(--rust)}
-.post-card .by{font-family:var(--type);font-size:.85rem;color:var(--olive-text)}
-.post-card .read{display:inline-block;margin-top:14px;font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:2px solid var(--amber);padding-bottom:2px}
-.byline{font-family:var(--type);font-size:.9rem;opacity:.9}
-.article .wrap{max-width:760px}
-.article .prose{max-width:none}
+.post-card .by{font-family:var(--type);font-size:var(--fs-type);color:var(--olive-text)}
+.post-card .read{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--s-2);font-weight:600;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--rust);text-decoration-thickness:2px;text-underline-offset:6px}
+.post-card:hover .read{text-decoration-color:var(--ink)}
+.post-card .print{transition:transform .3s}
+.post-card:hover .print{transform:translateY(-4px)}
+.byline{font-family:var(--type);font-size:var(--fs-small);opacity:.9}
+/* one left edge: the reading column starts on the same line as the hero title and the section headings */
+.article .wrap > *{max-width:720px}
+.article .prose{max-width:720px}
 .poem{margin:clamp(32px,5vw,48px) 0 0;filter:drop-shadow(0 16px 24px rgba(0,0,0,.25))}
 .poem .card{gap:18px;padding:clamp(28px,5vw,52px)}
 .poem h2{font-family:var(--hand);font-weight:700;text-transform:none;letter-spacing:0;font-size:clamp(1.9rem,4vw,2.5rem);color:var(--rust)}
-.poem p{font-family:var(--type);font-size:clamp(1.02rem,1.8vw,1.15rem);line-height:1.7}
-.poem cite{font-style:normal;font-family:var(--hand);font-size:1.3rem;color:var(--rust)}
-.grid.two{columns:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.6vw,30px) clamp(16px,2.4vw,28px);align-items:start}
-.grid.two .print{margin:0}
-.grid.two img.tall{aspect-ratio:4/5;object-fit:cover}
-.grid.two figcaption{padding-bottom:22px}
-.essay h2{margin-top:1.4em;font-size:clamp(1.1rem,2.2vw,1.4rem)}
-.essay a{color:var(--rust);text-underline-offset:3px}
+.poem cite{font-weight:700;font-size:var(--fs-hand)}
+.poem p{font-family:var(--type);font-size:var(--fs-lead);line-height:1.7}
+.essay h2{margin-top:1.4em;font-size:var(--fs-h3)}
+.essay a{text-decoration-color:var(--rust);text-decoration-thickness:2px;text-underline-offset:3px}
+.essay a:hover{text-decoration-color:var(--ink)}
 .essay em{font-style:italic}
-.essay-figure{margin:clamp(12px,2vw,20px) 0;background:var(--paper);padding:8px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.3))}
+.essay-figure{margin:clamp(12px,2vw,20px) 0;background:var(--paper);padding:8px;filter:var(--print-shadow)}
 .essay-figure:nth-of-type(odd){transform:rotate(-.6deg)}.essay-figure:nth-of-type(even){transform:rotate(.5deg)}
 .essay-figure img{width:100%;max-height:80vh;object-fit:cover}
-.essay-figure figcaption{font-family:var(--type);font-size:.78rem;line-height:1.3;padding:8px 2px 4px}
+.essay-figure figcaption{font-family:var(--type);font-size:var(--fs-type);line-height:1.3;padding:8px 2px 4px}
 .essay-figure .credit{color:var(--olive-text)}
-.essay-refs{margin-top:1.5em;font-size:.88rem}
-.essay-refs summary{cursor:pointer;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}
-.essay-refs h3{font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin:1.2em 0 .4em;color:var(--olive-text)}
+.essay-refs{margin-top:1.5em;font-size:var(--fs-small)}
+.essay-refs summary{cursor:pointer;display:list-item;padding-block:15px;line-height:1.3;font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:var(--fs-label)}
+.essay-refs h3{font-weight:600;font-size:var(--fs-label);letter-spacing:.16em;text-transform:uppercase;margin:1.2em 0 .4em;color:var(--olive-text)}
 .essay-refs ul{margin:0;padding-left:1.1em;display:grid;gap:.5em;overflow-wrap:anywhere}
-.first-pub{margin-top:1.4em;font-size:.88rem;color:var(--olive-text)}
-@media (max-width:760px){.post-card,.grid.two{grid-template-columns:minmax(0,1fr)}}
+.first-pub{margin-top:1.4em;font-size:var(--fs-small);color:var(--olive-text)}
+@media (max-width:760px){.post-card{grid-template-columns:minmax(0,1fr)}}
 """
 
 
@@ -121,8 +122,8 @@ def crumbs(*items):
 
 def hero(img, img_1200, pos, alt, kicker, title, hook):
     srcset = f' srcset="../img/{img_1200} 1200w, ../img/{img} 2000w" sizes="100vw"' if img_1200 != img else ''
-    return f'''<div class="hero">
-  <img class="bg" src="../img/{img}"{srcset} alt="{e(alt)}" width="2000" height="1333" style="object-position:{pos}" fetchpriority="high">
+    return f'''<div class="hero" style="--pos:{pos}">
+  <img class="bg" src="../img/{img}"{srcset} alt="{e(alt)}" width="2000" height="1333" fetchpriority="high">
   {header()}
   <div class="wrap">
     <p class="on-photo">{kicker}</p>
@@ -142,7 +143,7 @@ def post_page(p):
     if p.get('canonical'):
         graph[1]['mainEntityOfPage'] = p['canonical']
     out = [blog_head(f"{p['title']}, by {p['author']} · Wildly Calm", p['seo_desc'], p['hero'], path, graph, 'article', p.get('canonical'))]
-    out.append(hero(p['hero'], p['hero_1200'], p['hero_pos'], p['hero_alt'],
+    out.append(hero(p['hero'], p['hero_1200'], p['hero_pos'] + ';--pos-m:' + p['hero_pos_m'], p['hero_alt'],
                     f"Blog · {e(p['kind'])}", p['title'],
                     f"{e(p['standfirst'])}<br><span class=\"byline\">{e(p['author'])} · {e(p['date_label'])}</span>"))
     if p.get('body_file'):
@@ -160,11 +161,11 @@ def post_page(p):
   <div class="prose">{intro}</div>
   <div class="poem"><div class="card torn-3"><h2>{e(p['poem_title'])}</h2>{poem}<cite>{e(p['author'])}</cite></div></div>
 </div></section>''')
-    prints = ''.join(f'<div class="print"><figure class="{torn(i)}"><img src="../img/{f}"{' class="tall"' if h > w else ''} alt="{e(a)}" width="{w}" height="{h}" loading="lazy"><figcaption>{e(c)}</figcaption></figure></div>'
-                     for i, (f, c, a, w, h) in enumerate(p['photos']))
+    prints = gallery([(f'<figure class="{torn(i)}"><img src="../img/{f}" alt="{e(a)}" width="{w}" height="{h}" loading="lazy"><figcaption>{e(c)}</figcaption></figure>', w / h)
+                      for i, (f, c, a, w, h) in enumerate(p['photos'])])
     out.append(f'''<section class="gallery"><div class="wrap">
   <p class="eyebrow">Photos by {e(p['author'].split()[0])}</p><h2>{e(p['photos_title'])}</h2>
-  <div class="grid two">{prints}</div>
+  {prints}
 </div></section>''')
     out.append(more())
     out.append(footer())
@@ -173,7 +174,7 @@ def post_page(p):
 
 def more():
     return '''<section><div class="wrap"><p class="eyebrow">More</p><h2>Back to the blog</h2>
-  <p style="margin-top:14px"><a class="btn" href="./">All posts</a> <a class="btn" href="../retreats/barrington-river.html" style="background:var(--cream)">Next retreat</a></p>
+  <p class="btns" style="margin-top:24px"><a class="btn sand" href="./">All posts</a> <a class="btn line" href="../retreats/barrington-river.html">Next retreat</a></p>
 </div></section>'''
 
 

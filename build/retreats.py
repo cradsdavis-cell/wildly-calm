@@ -21,7 +21,7 @@ RETREATS = [
         seo_desc='March 2025: a handful of mates sea-kayaked out to Broughton Island off Port Stephens, speared fish for dinner and camped in the rocks. Where Wildly Calm started.', name='Broughton Island', when='March 2025', where='Port Stephens, NSW',
         tag='Where it started',
         hook='A spontaneous weekend kayaking trip that turned into Wildly Calm.',
-        hero='sunset-broughton.jpg', hero_pos='50% 70%',
+        hero='sunset-broughton.jpg', hero_pos='50% 70%', hero_pos_m='62% 70%',
         story=[
             "It wasn't meant to be the start of anything. A handful of mates loaded up sea kayaks and paddled out to Broughton Island, off Port Stephens, for the weekend.",
             "We speared fish for dinner, strung a tarp between the rocks for shade, and spent the nights on the sand with a gas stove and a string of fairy lights.",
@@ -46,7 +46,7 @@ RETREATS = [
         seo_desc="October 2025, our first men's retreat: river days in kayaks, yoga on the grass and sleeping bags round the fire.", name='Camp Bunya', when='October 2025', where=None,
         tag='Our first retreat',
         hook='River days, yoga on the grass and sleeping bags round the fire.',
-        hero='kayaks-bunya.jpg', hero_pos='50% 60%',
+        hero='kayaks-bunya.jpg', hero_pos='50% 60%', hero_pos_m='38% 84%',
         story=[
             "Camp Bunya was the first time we ran it as a proper retreat. Days on the river in kayaks, yoga on the grass, and nights in sleeping bags round the fire.",
             "We learned a lot that weekend. The biggest lesson: go deeper, stay longer, get wilder. Everything we've run since has been built on it.",
@@ -70,7 +70,7 @@ RETREATS = [
         seo_desc='February 2026: a busload of Sydney men, three days of coastal hiking and off-grid camping in Croajingalong National Park, and deep listening round the fire.', name='Croajingalong', when='February 2026', where='East Gippsland, VIC',
         tag='Three days on a wild coast',
         hook='A busload of Sydney men, three days of wilderness hiking and off-grid camping.',
-        hero='beach-circle-croajingalong.jpg', hero_pos='50% 55%',
+        hero='beach-circle-croajingalong.jpg', hero_pos='50% 55%', hero_pos_m='26% 62%',
         story=[
             "A busload of Sydney men headed down to Croajingalong National Park in East Gippsland for three days of hiking along the coast and camping off-grid.",
             "Between the walking there were workshops: deep listening, rock running, ecstatic dance, yoga, and one afternoon where everyone painted the man they want to be. Grown men, paintbrushes, a lot of laughing, then some very honest pictures.",
@@ -95,7 +95,7 @@ RETREATS = [
         seo_desc='September 2026: hiking in the snow near Thredbo, breathwork and yoga, show and tell by the fire, then a sauna and an ice bath.', name='The Snowies', when='September 2026', where='Crackenback, NSW',
         tag='Our first one in the snow',
         hook='A small group, a cottage near Thredbo, and snow on the ground.',
-        hero='snow-tors-snowies.jpg', hero_pos='50% 60%',
+        hero='snow-tors-snowies.jpg', hero_pos='50% 60%', hero_pos_m='22% 60%',
         story=[
             "Our first retreat in the snow. A small group in a cottage at Crackenback, just down the road from Thredbo.",
             "We hiked out across the snow among the granite tors, cooked breakfast in the snow gums, and came back to a sauna and an ice bath.",
@@ -118,78 +118,76 @@ RETREATS = [
 
 ORDER = [r['slug'] for r in RETREATS]
 
-CSS = """
-:root{--sand:#D7D2C6;--sand-deep:#CCC6B8;--paper:#FBFAF6;--ink:#1F1E1B;--olive:#5E604A;--olive-text:#55573F;--amber:#F7AD19;--cream:#F1EEE6;--rust:#A65E39;
---sans:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;--hand:"Gaegu","Bradley Hand","Comic Sans MS",cursive;--type:"Courier Prime","Courier New",ui-monospace,monospace;--gutter:clamp(16px,4vw,40px);color-scheme:light}
-*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{overflow-x:clip}
-body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased}
-img{max-width:100%;height:auto;display:block}a{color:inherit}p{margin:0}h1,h2,h3{margin:0;text-wrap:balance}
-a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-.wrap{max-width:1140px;margin-inline:auto;padding-inline:var(--gutter)}
-section{padding-block:clamp(56px,8vw,96px)}
-h2{font-weight:600;font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.18;letter-spacing:.07em;text-transform:uppercase}
-.eyebrow{font-family:var(--hand);font-size:1.45rem;line-height:1;color:var(--rust);margin-bottom:12px}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.14;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.btn{appearance:none;border:0;cursor:pointer;display:inline-block;text-decoration:none;font:600 .74rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;padding:14px 18px;background:var(--amber);color:var(--ink)}
-.btn:hover{background:var(--cream)}
-.on-photo{font-family:var(--hand);color:var(--amber);font-size:clamp(1.25rem,2vw,1.5rem);line-height:1.3;text-shadow:0 1px 10px rgba(0,0,0,.35)}
-
+CSS = open(os.path.join(HERE, 'base.css')).read() + """
 .hero{position:relative;color:var(--cream);isolation:isolate;background:var(--ink);min-height:clamp(480px,72vh,720px);display:grid;align-items:end}
-.hero > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,18,14,.5) 0%,rgba(18,18,14,.15) 35%,rgba(18,18,14,.75) 100%)}
-.top{position:absolute;inset:0 0 auto 0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
-.top .home img{width:118px}
-.top nav{display:flex;align-items:center;gap:clamp(14px,3vw,28px);font-weight:600;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
-.top nav a:not(.btn){color:var(--cream);text-decoration:none;border-bottom:1px solid transparent;padding-block:4px}
-.top nav a:not(.btn):hover{border-color:var(--amber)}
-.top .btn{padding:11px 14px}
-.hero > .wrap{width:100%;display:grid;gap:10px;padding-block:120px clamp(32px,5vw,56px)}
-.hero h1{font-weight:500;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:.08em;text-transform:uppercase}
-.hero .hook{max-width:52ch;font-size:clamp(1.02rem,1.5vw,1.18rem);opacity:.95}
+.hero > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,18,14,.64) 0%,rgba(18,18,14,.28) 20%,rgba(18,18,14,.15) 35%,rgba(18,18,14,.75) 100%)}
+.on-photo .seg{white-space:nowrap}
+.top nav{margin-left:auto}
+.hero > .wrap{width:100%;display:grid;gap:var(--s-3);padding-block:128px clamp(32px,5vw,56px)}
+.hero h1{font-weight:500;font-size:var(--fs-display);line-height:1.05;letter-spacing:.08em;text-transform:uppercase}
+.hero .hook{max-width:52ch;font-size:var(--fs-lead);opacity:.95}
 
-.story .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,5vw,64px);align-items:start}
-.prose{display:grid;gap:1.1em;max-width:60ch;font-size:1.08rem}
-.did{background:var(--olive);color:var(--cream);padding:clamp(22px,3vw,30px);display:grid;gap:12px}
-.did h3{font-weight:600;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
-.did ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.did li{font-family:var(--hand);font-size:1.3rem;line-height:1.2}
+.story .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(32px,5vw,64px);align-items:start}
+.prose{display:grid;gap:1.1em;max-width:var(--measure)}
+.did{background:var(--olive);color:var(--cream);box-shadow:inset 0 0 0 1.5px rgba(241,238,230,.45);padding:clamp(24px,3vw,32px);display:grid;gap:var(--s-3)}
+.did h3{font-weight:600;font-size:var(--fs-small);letter-spacing:.16em;text-transform:uppercase}
+.did ul{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-2)}
+.did li{font-family:var(--hand);font-weight:700;font-size:var(--fs-hand);line-height:1.2}
 .did li::before{content:"~ ";color:var(--amber)}
-.quote{margin-top:clamp(28px,4vw,40px);filter:drop-shadow(0 16px 24px rgba(0,0,0,.25))}
-.card{background:var(--paper);padding:clamp(22px,3vw,34px);display:grid;gap:12px}
-.card blockquote{margin:0;font-family:var(--type);font-size:clamp(1rem,1.7vw,1.15rem);line-height:1.55}
-.card cite{font-style:normal;font-family:var(--hand);font-size:1.25rem;color:var(--rust)}
+.quote{margin-top:clamp(32px,4vw,48px);filter:drop-shadow(0 16px 24px rgba(0,0,0,.25))}
+.quote .card{padding:clamp(24px,3vw,36px)}
+.quote .card blockquote{font-size:var(--fs-lead)}
 
-.gallery{background:var(--sand-deep)}
-.grid{columns:3 280px;column-gap:clamp(16px,2.4vw,28px);margin-top:clamp(24px,3vw,36px)}
-.print{break-inside:avoid;margin:0 0 clamp(18px,2.6vw,30px);filter:drop-shadow(0 12px 16px rgba(0,0,0,.35))}
-.print figure{background:var(--paper);padding:8px;margin:0}
-.print img{width:100%}
-.print figcaption{font-family:var(--type);font-size:.78rem;line-height:1.25;padding:8px 2px 2px}
-.grid .print:nth-child(3n+1){transform:rotate(-.8deg)}.grid .print:nth-child(3n+2){transform:rotate(.6deg)}
+.gallery{background-color:var(--sand-deep);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.6 0 0 0 -.5 1.6 0 0 0 -.5 1.6 0 0 0 -.5 0 0 0 0 .4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-blend-mode:soft-light}
+.gal{--gap:clamp(16px,2.4vw,28px);display:flex;flex-wrap:wrap;column-gap:var(--gap);margin-top:clamp(24px,3vw,36px)}
+/* --a is the print's aspect ratio x10 (grow factors under 1 would leave a lone print short of the row) */
+.gal .print{flex:var(--a) 1 16px;min-width:0;margin:0 0 var(--gap);transform:rotate(.5deg)}
+.gal .print.tilt{transform:rotate(-.6deg)}
+.gal .print img{width:100%;height:auto}
+.gal .br{display:none;flex-basis:100%;height:0}
+@media (min-width:901px){.gal .br-d{display:block}}
+@media (min-width:561px) and (max-width:900px){.gal .br-t{display:block}}
+/* phones: one print per row, full width, as the retreat pages always were */
+@media (max-width:560px){.gal .print{flex-basis:100%}.gal .print,.gal .print.tilt{transform:none}}
+/* the caption sits clear of the deepest tear on every side */
+.gal figcaption{padding:10px 14px 18px}
 """ + TORN + """
-.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:24px}
-.other{text-decoration:none;display:grid;gap:8px}
-.other .print{margin:0}
-.other b{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem}
-.other span{font-size:.85rem;color:var(--olive-text)}
-.other:hover b{color:var(--rust)}
+.others{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);margin-top:var(--s-5)}
+.other{text-decoration:none;display:grid;gap:var(--s-2)}
+.other .print{margin:0;transition:transform .3s}
+.other b{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:var(--fs-small);margin-top:var(--s-1)}
+.other span{font-family:var(--type);font-size:var(--fs-type);color:var(--ink)}
+.other:hover .print,.other:focus-visible .print{transform:translateY(-4px)}
+.other:hover b{text-decoration:underline;text-decoration-color:var(--rust);text-decoration-thickness:2px;text-underline-offset:4px}
+.more-link a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration-color:var(--rust);text-decoration-thickness:2px;text-underline-offset:5px}
+.more-link a:hover{text-decoration-color:var(--ink)}
 
-.nextup{position:relative;color:var(--cream);isolation:isolate;background:var(--ink)}
-.nextup > .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 92%;z-index:-2}
-.nextup::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(16,16,12,.85) 0%,rgba(16,16,12,.55) 60%,rgba(16,16,12,.3) 100%)}
-.nextup .wrap{display:grid;gap:14px;justify-items:start}
+/* next retreat: the paddlers in a photo strip, the words below it on olive */
+.nextup{color:var(--cream);background:var(--olive);padding-block:0}
+.nextup > .bg{display:block;width:100%;height:auto;aspect-ratio:21/8;object-fit:cover;object-position:50% 86%}
+.nextup .wrap{display:grid;gap:var(--s-3);justify-items:start;padding-block:var(--s-7) var(--s-8)}
+.nextup .btn{margin-top:var(--s-3)}
 .nextup h2{color:var(--amber)}
-.details{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 20px;margin:10px 0 0}
-.details dt{font-weight:600;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;padding-top:4px}
-.details dd{margin:0}
-.faq{margin-top:18px;display:grid;gap:14px;max-width:52ch}
-.faq b{display:block;font-weight:600}
-footer{padding-block:40px 56px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;font-size:.85rem}
-footer img{width:130px}
-.small{font-size:.8rem;color:var(--olive-text)}
+.nextup .on-photo{text-shadow:none;color:var(--cream)}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-5)}
+/* at 900 and below the hero photo stands on its own, cropped to the people, and the words follow on ink */
+@media (max-width:900px){
+  .hero{min-height:0;display:block;background:var(--olive)}
+  .hero > .bg{position:relative;inset:auto;height:auto;aspect-ratio:4/3;object-position:var(--pos-m,var(--pos,50% 50%))}
+  .hero::before{bottom:auto;height:170px;background:linear-gradient(180deg,rgba(18,18,14,.78) 0%,rgba(18,18,14,.45) 55%,rgba(18,18,14,0) 100%)}
+  .hero > .wrap{padding-block:var(--s-6) var(--s-7)}
+  .nextup > .bg{aspect-ratio:3/2}
+  .hero .on-photo{text-shadow:none;color:var(--cream)}
+}
 @media (max-width:860px){.story .wrap{grid-template-columns:minmax(0,1fr)}.others{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.top nav a:not(.btn){display:none}.others{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){
+  .top .wrap{flex-wrap:wrap;row-gap:0}
+  .top nav{order:3;flex-basis:100%;margin-left:0}
+  .hero > .bg{aspect-ratio:1/1}
+  .hero h1{font-size:clamp(1.75rem,8.5vw,2.25rem);letter-spacing:.05em}
+  .others{grid-template-columns:minmax(0,1fr)}
+}
 """
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Gaegu:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap">'
@@ -226,7 +224,8 @@ def head(title, desc, img, path, graph):
 def header():
     return '''<header class="top"><div class="wrap">
   <a class="home" href="../"><img src="../img/wc-logo-amber.png" alt="Wildly Calm home" width="519" height="163"></a>
-  <nav aria-label="Site"><a href="../#proof">All retreats</a><a href="../#how">How it works</a><a href="../blog/">Blog</a><a class="btn" href="../#register">Tickets</a></nav>
+  <nav aria-label="Site"><a href="../#proof">All retreats</a><a href="../#how">How it works</a><a href="../blog/">Blog</a></nav>
+  <a class="btn" href="../#register">Tickets</a>
 </div></header>'''
 
 def nextup():
@@ -235,7 +234,7 @@ def nextup():
   <div class="wrap">
     <p class="on-photo">Next retreat</p>
     <h2>Barrington River Men's Retreat</h2>
-    <p class="on-photo">Canoe | Connect | Express · December 4th - 6th</p>
+    <p class="on-photo"><span class="seg">Canoe | Connect | Express</span> <span class="seg">· December 4th - 6th</span></p>
     <a class="btn" href="barrington-river.html">See the details</a>
   </div>
 </section>'''
@@ -252,15 +251,72 @@ def footer():
 
 def torn(i): return f'torn-{i % 4 + 1}'
 
+def jpeg_size(path):
+    """(width, height) from a JPEG's SOF marker; no image library needed."""
+    with open(path, 'rb') as f:
+        data = f.read()
+    i = 2
+    while i < len(data):
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        m = data[i + 1]
+        if m in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+            return int.from_bytes(data[i + 7:i + 9], 'big'), int.from_bytes(data[i + 5:i + 7], 'big')
+        i += 2 + int.from_bytes(data[i + 2:i + 4], 'big')
+    raise ValueError(path)
+
+# Justified gallery: every print in a row shares one image height, so each row closes edge to edge
+# with no cropping. Row breaks are chosen per layout width (desktop, tablet, phone) and written as
+# empty break elements, so the photo order and the words never change.
+# per layout: (content width, gap, target image height, min image height, max prints per row, min share
+# of the row any one print may take). Phones show one print per row, so they need no breaks.
+GAL_WIDTHS = {'d': (1060, 28, 340, 280, 3, .26), 't': (706, 18, 250, 180, 3, .26)}
+
+def rows(aspects, width, gap, target, hmin, maxn, minshare):
+    n = len(aspects)
+    best = [0.0] + [float('inf')] * n
+    cut = [0] * (n + 1)
+    for j in range(1, n + 1):
+        for k in range(max(0, j - maxn), j):
+            group = aspects[k:j]
+            h = (width - gap * (len(group) - 1) - 16 * len(group)) / sum(group)
+            cost = (h - target) ** 2
+            if len(group) > 1 and (h < hmin or min(group) / sum(group) < minshare):
+                cost += 1e7
+            if best[k] + cost < best[j]:
+                best[j], cut[j] = best[k] + cost, k
+    ends, j = [], n
+    while j:
+        ends.append(j)
+        j = cut[j]
+    return set(ends)
+
+def gallery(items):
+    """items: list of (print_html_without_wrapper_attrs, aspect). Returns the .gal block."""
+    aspects = [a for _, a in items]
+    ends = {key: rows(aspects, *spec) for key, spec in GAL_WIDTHS.items()}
+    out = []
+    for i, (inner, a) in enumerate(items, 1):
+        cls = 'print' + (' tilt' if i % 2 else '')
+        out.append(f'<div class="{cls}" style="--a:{a * 10:.2f}">{inner}</div>')
+        brk = ' '.join(f'br-{k}' for k in GAL_WIDTHS if i in ends[k] and i < len(items))
+        if brk:
+            out.append(f'<i class="br {brk}"></i>')
+    return '<div class="gal">' + ''.join(out) + '</div>'
+
 def page(r):
     meta = r['when'] + (f" · {r['where']}" if r['where'] else '')
+    # the eyebrow breaks only at the dots, never inside a segment
+    parts = [r['when']] + ([r['where']] if r['where'] else []) + [r['tag']]
+    segs = ' '.join(f'<span class="seg">{"· " if i else ""}{e(x)}</span>' for i, x in enumerate(parts))
     path = f"/retreats/{r['slug']}.html"
     out = [head(f"{r['seo_title']} · Wildly Calm", r['seo_desc'], r['hero'], path, [breadcrumbs(r['name'], path)])]
-    out.append(f'''<div class="hero">
-  <img class="bg" src="../img/{r['hero']}" alt="" width="1400" height="933" style="object-position:{r['hero_pos']}" fetchpriority="high">
+    out.append(f'''<div class="hero" style="--pos:{r['hero_pos']};--pos-m:{r['hero_pos_m']}">
+  <img class="bg" src="../img/{r['hero']}" alt="" width="1400" height="933" fetchpriority="high">
   {header()}
   <div class="wrap">
-    <p class="on-photo">{e(meta)} · {e(r['tag'])}</p>
+    <p class="on-photo">{segs}</p>
     <h1>{e(r['name'])}</h1>
     <p class="hook">{e(r['hook'])}</p>
   </div>
@@ -274,10 +330,14 @@ def page(r):
   <div><p class="eyebrow">What happened</p><div class="prose">{story}</div>{quote}</div>
   <aside class="did"><h3>What we did</h3><ul>{did}</ul></aside>
 </div></section>''')
-    prints = ''.join(f'<div class="print"><figure class="{torn(i)}"><img src="../img/{f}" alt="{e(a)}" loading="lazy"><figcaption>{e(c)}</figcaption></figure></div>' for i, (f, c, a) in enumerate(r['photos']))
+    items = []
+    for i, (f, c, a) in enumerate(r['photos']):
+        w, h = jpeg_size(os.path.join(ROOT, 'img', f))
+        items.append((f'<figure class="{torn(i)}"><img src="../img/{f}" alt="{e(a)}" width="{w}" height="{h}" loading="lazy"><figcaption>{e(c)}</figcaption></figure>', w / h))
+    prints = gallery(items)
     out.append(f'''<section class="gallery"><div class="wrap">
   <p class="eyebrow">Photos</p><h2>{e(r['name'])} in pictures</h2>
-  <div class="grid">{prints}</div>
+  {prints}
 </div></section>''')
     others = [o for o in RETREATS if o['slug'] != r['slug']]
     cards = ''.join(f'<a class="other" href="{o["slug"]}.html"><div class="print"><figure class="{torn(i+1)}"><img src="../img/{o["photos"][0][0]}" alt="" loading="lazy"></figure></div><b>{e(o["name"])}</b><span>{e(o["when"])}</span></a>' for i, o in enumerate(others))
@@ -292,8 +352,8 @@ def barrington():
     out = [head("Barrington River Men's Retreat, 4 to 6 Dec 2026 · Wildly Calm",
                 'Three days canoeing the Barrington River, NSW, Friday 4 to Sunday 6 December 2026. Camping, fire and the circle. Men in their 20s and 30s, small group.',
                 'river-bunya-wide.jpg', path, [breadcrumbs("Barrington River Men's Retreat", path), event(tickets)])]
-    out.append(f'''<div class="hero">
-  <img class="bg" src="../img/river-bunya-wide.jpg" alt="" width="2000" height="1333" style="object-position:50% 92%" fetchpriority="high">
+    out.append(f'''<div class="hero" style="--pos:50% 92%;--pos-m:44% 84%">
+  <img class="bg" src="../img/river-bunya-wide.jpg" alt="" width="2000" height="1333" fetchpriority="high">
   {header()}
   <div class="wrap">
     <p class="on-photo">Next retreat · Canoe | Connect | Express</p>
@@ -319,11 +379,11 @@ def barrington():
       <div><b>Is this therapy?</b><p>No. It's peers, not counsellors. If you need more support, we'll help you find it.</p></div>
     </div>
   </div>
-  ''' + (f'<aside class="did"><h3>Tickets</h3><p style="font-size:.98rem">Tickets are on sale now on Humanitix.</p><a class="btn" href="{e(tickets)}" rel="noopener" style="justify-self:start">Get tickets</a></aside>' if tickets else
-         '<aside class="did"><h3>Tickets</h3><p style="font-size:.98rem">Tickets and the price are on the way. Head to the booking section for the latest.</p><a class="btn" href="../#register" style="justify-self:start">Book or register</a></aside>') + '''
+  ''' + (f'<aside class="did"><h3>Tickets</h3><p>Tickets are on sale now on Humanitix.</p><a class="btn" href="{e(tickets)}" rel="noopener" style="justify-self:start">Get tickets</a></aside>' if tickets else
+         '<aside class="did"><h3>Tickets</h3><p>Tickets and the price are on the way. Head to the booking section for the latest.</p><a class="btn" href="../#register" style="justify-self:start">Book or register</a></aside>') + '''
 </div></section>''')
     cards = ''.join(f'<a class="other" href="{o["slug"]}.html"><div class="print"><figure class="{torn(i)}"><img src="../img/{o["photos"][0][0]}" alt="" loading="lazy"></figure></div><b>{e(o["name"])}</b><span>{e(o["when"])}</span></a>' for i, o in enumerate(RETREATS[:3]))
-    out.append(f'''<section class="gallery"><div class="wrap"><p class="eyebrow">Before this one</p><h2>Past retreats</h2><div class="others">{cards}</div><p style="margin-top:18px"><a href="the-snowies.html">And the Snowies, September 2026</a></p></div></section>''')
+    out.append(f'''<section class="gallery"><div class="wrap"><p class="eyebrow">Before this one</p><h2>Past retreats</h2><div class="others">{cards}</div><p class="more-link" style="margin-top:18px"><a href="the-snowies.html">And the Snowies, September 2026</a></p></div></section>''')
     out.append(footer())
     return '\n'.join(out)
 
